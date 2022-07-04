@@ -10,15 +10,21 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import axios from "axios";
 import "./listStyle.css"
+import Empadd from './Empadd';
 import { textAlign } from '@mui/system';
 
-const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate}) => {
+
+const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate , heading , setHeading}) => {
   
   const {id} = useParams();
 
   
   const [employeeData, setEmployeeData] = useState([]);
 
+  
+
+
+  
     const removeData = (tid) => {
       console.log(tid)
       // async function() {
@@ -55,7 +61,8 @@ const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate}) => {
 
   return (
     <div>
-        <Button variant="contained" sx={{margin:"25px", float:"right"}}>Add Employee</Button>
+    <Link to={"/emp_add"} style={{textDecoration :"none"}}  >
+        <Button variant="contained" sx={{margin:"25px", float:"right"}} onClick={()=>setHeading(true)} >Add Employee</Button></Link>
         <TableContainer
             component={Paper} 
             variant="outlined"
@@ -89,7 +96,7 @@ const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate}) => {
                     <Link to={`/emp_id/${data.id}`}>
                     <Button variant="contained">View</Button> </Link>
                     <Link to={`/emp_edit/emp_id/${data.id}`} style={{textDecoration :"none"}}  >
-                    <Button variant="contained" color="success" sx={{marginLeft:"20px"}} onClick={() => setEditData({...data}) } >Edit</Button></Link>
+                    <Button variant="contained" color="success" sx={{marginLeft:"20px"}} onClick={() => {setEditData({...data}) ; setHeading(false) } } >Edit</Button></Link>
                     <Button sx={{marginLeft:"20px"}} onClick={() => removeData(data.id)} variant="contained" color="error">Delete</Button></TableCell>
                     {/* <TableCell><Button variant="contained" color="error">Delete</Button></TableCell> */}
                 </TableRow>
