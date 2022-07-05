@@ -101,15 +101,15 @@ const Empadd = ({heading,apidata,setApiData}) => {
       <div style={{display:"flex",gap:"20px" ,width:"80%",alignItems:"center"}}>
         <div style={{display:"flex",flexDirection:"column",gap:"1px" ,width:"50%"}}>
             <Field placeHolder="First name" variant="outlined" name="first_name" type='text' />
-            {/* {touched.first_name && errors.first_name ? (
+            {touched.first_name && errors.first_name ? (
                 <div style={{color:"red"}}>{errors.first_name}</div>
-            ) : null} */}
+            ) : null}
         </div>
         <div style={{display:"flex",flexDirection:"column",gap:"1px" ,width:"50%"}}>
             <Field placeHolder="Last name" variant="outlined" name="last_name" type='text'  />
-            {/* {touched.last_name && errors.last_name ? (
+            {touched.last_name && errors.last_name ? (
                 <div style={{color:"red"}}>{errors.last_name}</div>
-            ) : null} */}
+            ) : null}
        </div>
        </div>
       </div> 
@@ -118,9 +118,9 @@ const Empadd = ({heading,apidata,setApiData}) => {
       <EmailIcon fontSize="large"  />
       <div>
       <Field placeHolder="Email" variant="outlined" style={{width:"400px"}} type='text'  name="email" />
-      {/* {touched.email && errors.email ? (
-         <div style={{color:"red"}}>{errors.email}</div>    
-       ) : null} */}
+            {touched.email && errors.email ? (
+                <div style={{color:"red"}}>{errors.email}</div>    
+            ) : null}
       </div>
       </div>
 
