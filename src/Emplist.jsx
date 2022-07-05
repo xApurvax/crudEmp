@@ -8,55 +8,43 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import axios from "axios";
 import "./listStyle.css"
 import Empadd from './Empadd';
 import { textAlign } from '@mui/system';
 
 
-const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate , heading , setHeading}) => {
+const Emplist = ({apidata,setApiData, heading , setHeading}) => {
   
   const {id} = useParams();
 
   
-  const [employeeData, setEmployeeData] = useState([]);
+  // const [employeeData, setEmployeeData] = useState([]);
 
   
 
 
   
     const removeData = (tid) => {
-      console.log(tid)
+      // console.log(tid)
       // async function() {
         // await axios.delete(`https://reqres.in/api/users/${tid}`);  
-      setEmployeeData(employeeData.filter((val) =>{
-        if(val.id !== tid){
-          return val;
-        }
-      }));
+      // setEmployeeData(employeeData.filter((val) =>{
+      //   if(val.id !== tid){
+      //     return val;
+      //   }
+      // }));
     // }
       // employeeData.filter
+      const newarray = apidata.filter((data) => {
+        if (data.id !== tid) {
+          return data;
+        }
+      });
+      setApiData(newarray)
     }
     
-    useEffect(() =>{
-        const fetchData = async() => {
-            const url ="https://reqres.in/api/users";
-            const {data,status} =  await axios.get(url)
-            // const jsonData = response.data
-            // const empData = jsonData.data
-            console.log(data)
-            console.log(status)
-            if(status === 200){
-              setEmployeeData(data.data)
-              setApiData(data.data)
-            }
-          };
-            if(update){
-              setEmployeeData(apidata)
-            }else{
-              fetchData();        
-            }
-            
+    useEffect(() =>{ 
+      // console.log(apidata,"final Obj") 
     },[])
 
   return (
@@ -82,9 +70,9 @@ const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate , heading
     </TableHead>
 
     <TableBody>
-    {employeeData.length == 0 ? 
+    {apidata.length == 0 ? 
     <p style={{textAlign:"center", marginTop:"10px"}}>No Records found</p> :
-     employeeData?.map((data,index) => {
+    apidata?.map((data,index) => {
         return(
                 <TableRow key={data.id}>
                     <TableCell>{index + 1}</TableCell>
@@ -95,8 +83,8 @@ const Emplist = ({edit,setEditData,apidata,setApiData,update,setUpdate , heading
                     <TableCell sx={{display:"flex",justifyContent:"center",alignItems:"center",height:"105px"}}>
                     <Link to={`/emp_id/${data.id}`}>
                     <Button variant="contained">View</Button> </Link>
-                    <Link to={`/emp_edit/emp_id/${data.id}`} style={{textDecoration :"none"}}  >
-                    <Button variant="contained" color="success" sx={{marginLeft:"20px"}} onClick={() => {setEditData({...data}) ; setHeading(false) } } >Edit</Button></Link>
+                    <Link to={`/emp_edit/${data.id}`} style={{textDecoration :"none"}}  >
+                    <Button variant="contained" color="success" sx={{marginLeft:"20px"}} onClick={() => {setHeading(false) } } >Edit</Button></Link>
                     <Button sx={{marginLeft:"20px"}} onClick={() => removeData(data.id)} variant="contained" color="error">Delete</Button></TableCell>
                     {/* <TableCell><Button variant="contained" color="error">Delete</Button></TableCell> */}
                 </TableRow>

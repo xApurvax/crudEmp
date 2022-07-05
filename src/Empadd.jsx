@@ -7,33 +7,59 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 
 
-const Empadd = ({heading,edit,setEditData,apidata,setApiData,update,setUpdate}) => {
-    console.log(heading)
+const Empadd = ({heading,apidata,setApiData}) => {
+    console.log(apidata)
+
+    // const [initVal ,setInitVal] = useState(
+    //     {
+    //         first_name: "" ,
+    //         last_name:  "" ,
+    //         email:   "",
+    //     }
+    // )
 
     const navigate  = useNavigate();
     const location = useLocation();
-    console.log(location)
+    // console.log(location)
     const {id} = useParams();
 
-    if(location.pathname.match('/emp_add')){
-        console.log("add more")
-    }else{
-        console.log("edit more")
+    const editData = (value) => {
+        const newData = apidata.map((data) => {
+            if(data.id == id){
+                return {...value }
+            }else{
+                return data;
+            }
+        })
+
+
+
+        console.log(newData); 
+        setApiData(newData);
+        // setInitVal({
+        //     first_name: apidata[id-1].first_name ,
+        //     last_name:  apidata[id-1].last_name ,
+        //     email: apidata[id-1].email
+        // })
+        console.log("from empadd")
     }
 
-    const [formdata, setFormData] = useState({});
 
     useEffect(() =>{
-        setFormData(edit);   
-    },[])
+        if(location.pathname.match('/emp_add')){
+            // console.log("add mode")
+        }else{
+            // console.log("edit mode")
+        }
+    })
 
 
-    const loginSchema = Yup.object().shape({
-        constName: Yup.string()
+    const loginSchema = Yup.object({
+        first_name: Yup.string()
           .min(2,"Must be more than 2 char")
           .max(10, 'Must be 10 characters or less')
           .required('First Name Required'),
-        lastName: Yup.string()
+        last_name: Yup.string()
           .min(2,"Must be more than 2 char")
           .max(10, 'Must be 20 characters or less')
           .required('Last Name Required'),
@@ -45,15 +71,23 @@ const Empadd = ({heading,edit,setEditData,apidata,setApiData,update,setUpdate}) 
     <div>
     <Formik
     initialValues= {{
-        firstName: '',
-        lastName: '',
-        email: '',
-    }}
+                    email: !id ? "" : apidata[id-1].email,
+                    first_name: !id ? "" : apidata[id-1].first_name,
+                    last_name: !id ? "" : apidata[id-1].last_name,
+                  }}
       validationSchema= {loginSchema}
       onSubmit ={ (values) =>{
-        console.log(values);
-        // setApiData([...apidata,values])
-        // navigate("/")
+        console.log(values,":hi");
+        
+
+        if(location.pathname.match('/emp_add')){
+            setApiData([...apidata,{id: apidata[apidata.length-1].id+1 ,...values}]);
+            navigate("/")
+            
+        }else {
+            editData(values);
+            navigate("/")
+        }
       }}
     >
 
@@ -66,16 +100,16 @@ const Empadd = ({heading,edit,setEditData,apidata,setApiData,update,setUpdate}) 
       <PersonIcon fontSize="large" />
       <div style={{display:"flex",gap:"20px" ,width:"80%",alignItems:"center"}}>
         <div style={{display:"flex",flexDirection:"column",gap:"1px" ,width:"50%"}}>
-            <Field placeHolder="First name" variant="outlined" name="firstName" type='text' />
-            {touched.firstName && errors.firstName ? (
-                <div style={{color:"red"}}>{errors.firstName}</div>
-            ) : null}
+            <Field placeHolder="First name" variant="outlined" name="first_name" type='text' />
+            {/* {touched.first_name && errors.first_name ? (
+                <div style={{color:"red"}}>{errors.first_name}</div>
+            ) : null} */}
         </div>
         <div style={{display:"flex",flexDirection:"column",gap:"1px" ,width:"50%"}}>
-            <Field placeHolder="Last name" variant="outlined" name="lastName" type='text'  />
-            {touched.lastName && errors.lastName ? (
-                <div style={{color:"red"}}>{errors.lastName}</div>
-            ) : null}
+            <Field placeHolder="Last name" variant="outlined" name="last_name" type='text'  />
+            {/* {touched.last_name && errors.last_name ? (
+                <div style={{color:"red"}}>{errors.last_name}</div>
+            ) : null} */}
        </div>
        </div>
       </div> 
@@ -84,9 +118,9 @@ const Empadd = ({heading,edit,setEditData,apidata,setApiData,update,setUpdate}) 
       <EmailIcon fontSize="large"  />
       <div>
       <Field placeHolder="Email" variant="outlined" style={{width:"400px"}} type='text'  name="email" />
-      {touched.email && errors.email ? (
+      {/* {touched.email && errors.email ? (
          <div style={{color:"red"}}>{errors.email}</div>    
-       ) : null}
+       ) : null} */}
       </div>
       </div>
 

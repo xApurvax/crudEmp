@@ -1,37 +1,50 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Emplist from "./Emplist";
 import Empdetail from "./Empdetail";
 import ErrorPage from "./ErrorPage";
-import Empedit from "./Empedit";
 import Empadd from './Empadd';
+import axios from "axios";
 
 function App() {
-  const [edit, setEditData] = useState({});
+  
   const [apidata, setApiData] = useState([]);
-  const [update, setUpdate] = useState(false);
-  const [heading, setHeading]  = useState(false);
+  const [heading,setHeading] = useState(false);
+  useEffect(() => {
+    const fetchData = async() => {
+      const url ="https://reqres.in/api/users";
+      const {data,status} =  await axios.get(url)
+      console.log(data)
+      console.log(status)
+      if(status === 200){
+        setApiData(data.data)
+      }
+    };
+      if(apidata.length == 0){
+        fetchData();        
+      }
+  }, [])
+  
 
   return (
     <div>
       <BrowserRouter>
       <Routes>
       <Route path="/" exact element={<Emplist {
-        ...{edit,setEditData,apidata,setApiData,update,setUpdate ,heading, setHeading}
+        ...{apidata,setApiData,heading,setHeading}
       } />} />
       <Route path="/emp_add" exact element={<Empadd {
-        ...{edit,setEditData,apidata,setApiData,update,setUpdate ,heading , setHeading}
+        ...{apidata,setApiData,heading,setHeading}
       } />} />
       <Route path="/emp_id/:id" exact element={<Empdetail {
-        ...{edit,setEditData,apidata,setApiData,update,setUpdate}
+        ...{apidata,setApiData,heading,setHeading}
       } />} />
-      <Route path="/emp_edit/emp_id/:id" exact element={<Empadd {
-        ...{edit,setEditData,apidata,setApiData,update,setUpdate}
+      <Route path="/emp_edit/:id" exact element={<Empadd {
+        ...{apidata,setApiData,heading,setHeading}
       } />} />
-
-<Route path="/edit" exact element={<Empadd {
-        ...{edit,setEditData,apidata,setApiData,update,setUpdate}
-      } />} />
+      {/* <Route path="/edit" exact element={<Empadd {
+        ...{apidata,setApiData,heading,setHeading}
+      } />} /> */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
       </BrowserRouter>

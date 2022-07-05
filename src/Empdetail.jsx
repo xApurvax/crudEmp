@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button } from '@mui/material';
 
-const Empdetail = ({edit,setEditData,apidata,setApiData,update,setUpdate}) => {
+const Empdetail = ({apidata,setApiData} ) => {
    
     const {id} = useParams();
 
@@ -25,31 +25,16 @@ const Empdetail = ({edit,setEditData,apidata,setApiData,update,setUpdate}) => {
     //     }
     //     fetchData();        
     // },[])
-
-    const fetchData = async() => {
-        const url =`https://reqres.in/api/users/${id}`;
-        const {data,status} =  await axios.get(url)
-        // const jsonData = response.data
-        // const empData = jsonData.data
-        console.log(data)
-        console.log(status)
-        if(status === 200){
-          setEmployeeData(data.data)
-        }
-      };
       
       useEffect(() =>{
-        if(update){
             console.log("updatedone");
+
         const newData = apidata.filter((data) =>{
             if(data.id == id){
                 return data;
             }
         });
         setEmployeeData(...newData)
-        }else{
-            fetchData();        
-        }
     },[])
 
 
