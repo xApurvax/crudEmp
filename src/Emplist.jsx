@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import "./listStyle.css"
 import Empadd from './Empadd';
 import { textAlign } from '@mui/system';
-
+import user from "./user.png";
 
 const Emplist = ({apidata,setApiData, heading , setHeading}) => {
   
@@ -76,7 +76,7 @@ const Emplist = ({apidata,setApiData, heading , setHeading}) => {
         return(
                 <TableRow key={data.id}>
                     <TableCell>{index + 1}</TableCell>
-                    <TableCell><img style={{height:"70px", borderRadius:"50%"}}  src = {data.avatar} /></TableCell>
+                    <TableCell><img style={{height:"70px", borderRadius:"50%"}}  src = {data.avatar ? data.avatar : user} /></TableCell>
                     <TableCell>{data.first_name}</TableCell>
                     <TableCell>{data.last_name}</TableCell>
                     <TableCell>{data.email}</TableCell>

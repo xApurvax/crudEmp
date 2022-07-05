@@ -7,6 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button } from '@mui/material';
+import user from "./user.png";
 
 const Empdetail = ({apidata,setApiData} ) => {
    
@@ -43,7 +44,7 @@ const Empdetail = ({apidata,setApiData} ) => {
         <div id='empCard' style={{display:"flex",justifyContent:"center", alignItems:"center", gap:"20px",height:"100vh"}}>
         <div style={{padding:"15px",display:"flex",justifyContent:"center", alignItems:"center", gap:"25px",borderRadius:"25px",boxShadow:" 0.8em 0.8em 1.2em 1.2em #d2dce9"}}>
             <div id="empCardImg" style={{boxShadow:" 0.8em 0.8em 0.5em 0.1em #d2dce9", borderRadius:"50%",padding:"7px",backgroundColor:"#6c6d71"}}>
-                <img src={employeeData?.avatar} style={{height:"180px",borderRadius:"50%"}} alt="Employee Image" />
+                <img src={employeeData.avatar ? employeeData.avatar : user } style={{height:"180px",borderRadius:"50%"}} alt="Employee Image" />
             </div>
             <div id="empCardInfo" style={{display:"flex",flexDirection:"column", gap:"15px"}}>
                 <div>
