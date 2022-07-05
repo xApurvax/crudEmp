@@ -125,7 +125,7 @@ const Empadd = ({heading,apidata,setApiData}) => {
       </div>
 
       <div  style={{display:"flex",gap:"30px",width:"30%",justifyContent:"center"}}>
-      <Button variant="contained" type='submit'>Add</Button>
+      <Button variant="contained" type='submit'> {heading ? "Add" : "Save"} </Button>
       <Link to={'/'} style={{textDecoration:"none"}}>
       <Button  variant="contained" color="error">cancel</Button></Link>
       </div>
