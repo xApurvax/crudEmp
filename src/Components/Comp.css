@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
+
+.nav-logo{
+    font-family: 'Griffy', cursive;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 49px;
+    color: #FFC907;
+}
