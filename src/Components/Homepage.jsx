@@ -40,7 +40,8 @@ const Homepage = () => {
             <img className='posterImg' src={`https://image.tmdb.org/t/p/original/${apiImgData.posters[1].file_path}`} alt='' /> 
 
         </div> */}
-      <section>
+      <div id="main-homepage">
+      <section >
         <div id="main-homepage-bg">
           <img
             className="poster-hp"
@@ -90,6 +91,7 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 };
