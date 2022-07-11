@@ -1,32 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BsPlayFill } from "react-icons/bs";
+import {useParams } from 'react-router-dom'
+import { BsPlayFill,BsDownload } from "react-icons/bs";
 import { MdAdd } from "react-icons/md";
 import { FaImdb } from "react-icons/fa";
 
 const Homepage = () => {
+  let {id} = useParams();
+  const [movieId, setMovieId] = useState('284052');
   const [apiMovData, setMovApiData] = useState([]);
   const [apiImgData, setImgApiData] = useState([]);
+  
+  console.log(id,"movie id")
 
   useEffect(() => {
-    const fetchMovieData = async () => {
-      const url =
-        "https://api.themoviedb.org/3/movie/284052?api_key=7a6e110a340d0908688b03ce0569944f";
-      const { data } = await axios.get(url);
-      setMovApiData(data);
-    };
+    if(id) {
+      setMovieId(id);
+    }else{
+      setMovieId('284052');
+    }
 
-    const fetchImageData = async () => {
-      const url =
-        "https://api.themoviedb.org/3/movie/284052/images?api_key=7a6e110a340d0908688b03ce0569944f";
+    console.log({movieId});
+
+    const base_url= "https://api.themoviedb.org/3/movie/";
+
+    const fetchMovieData = async () => {
+      let url = base_url+movieId+"?api_key=7a6e110a340d0908688b03ce0569944f";
       const { data } = await axios.get(url);
-      console.log(data, "images");
+      console.log(data);
+      setMovApiData(data);
+      console.log(apiMovData, "m data");
+    };
+    
+    const fetchImageData = async () => {
+      let url =
+      base_url+movieId+"/images?api_key=7a6e110a340d0908688b03ce0569944f";
+      const { data } = await axios.get(url);
+      console.log(data);
       setImgApiData(data);
+      console.log(apiImgData, "images");
     };
 
     fetchMovieData();
     fetchImageData();
-  }, []);
+  }, [movieId,apiMovData,apiImgData]);
 
   if (apiImgData.length === 0 || apiMovData.length === 0) {
     return <p>loading...</p>;
@@ -45,7 +62,7 @@ const Homepage = () => {
         <div id="main-homepage-bg">
           <img
             className="poster-hp"
-            src={`https://image.tmdb.org/t/p/original/${apiImgData.backdrops[13].file_path}`}
+            src={`https://image.tmdb.org/t/p/original/${apiImgData.backdrops[0].file_path}`}
             alt=""
           />
         </div>
@@ -67,8 +84,7 @@ const Homepage = () => {
             </div>
             <div className="genres-hp-cont">
               <p>
-                {apiMovData?.genres[1].name}, {apiMovData?.genres[2].name},{" "}
-                {apiMovData?.genres[3].name}
+                {apiMovData?.genres[0].name}
               </p>
             </div>
           </div>
@@ -79,6 +95,11 @@ const Homepage = () => {
             <button className="list">
               MY LIST <MdAdd size={28} id="wl-icons" />
             </button>
+            {movieId == id && 
+            <button className="download">
+              <BsDownload size={28} id="wl-icons" />
+            </button>}
+
           </div>
           <div className="ratings-hp">
             <FaImdb className="idbm" color={"#FFC907"} size={40}/>
@@ -89,6 +110,31 @@ const Homepage = () => {
               {new Date(apiMovData?.release_date).getFullYear()}
             </p>
           </div>
+
+          {movieId == id &&     
+          <>
+          <div className="genres-hp">
+            <div className="genres-hp-head">
+              <p>AUDIO</p>
+            </div>
+            <div className="genres-hp-cont">
+              <p>
+                {apiMovData?.spoken_languages[0].english_name}
+              </p>
+            </div>
+          </div>
+          <div className="genres-hp">
+            <div className="genres-hp-head">
+              <p>SUBTITLES</p>
+            </div>
+            <div className="genres-hp-cont">
+              <p>
+              {apiMovData?.spoken_languages[0].english_name}
+              </p>
+            </div>
+          </div>
+          </>
+        }
         </div>
       </section>
       </div>

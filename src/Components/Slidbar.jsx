@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { IoIosArrowDown } from "react-icons/io";
 import Card from "./Card.jsx";
+import Slider from "react-slick";
 
 const Slidbar = (props) => {
     const [apiMovUcData, setMovUcApiData] = useState([]);
@@ -21,6 +22,44 @@ const Slidbar = (props) => {
       return <p>loading...</p>;
     }
     
+    // function SampleNextArrow(props) {
+    //   const { className, style, onClick } = props;
+    //   return (
+    //     <div
+    //       className={className}
+    //       style={{ ...style, display: "block", background: "red" }}
+    //       onClick={onClick}
+    //     />
+    //   );
+    // }
+
+    // function SamplePrevArrow(props) {
+    //   const { className, style, onClick } = props;
+    //   return (
+    //     <div
+    //       className={className}
+    //       style={{ ...style, display: "block", background: "green" }}
+    //       onClick={onClick}
+    //     />
+    //   );
+    // }
+
+    let settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      arrows: false,
+      swipeToSlide: true,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      pauseOnHover: true,
+      easse: "linear",
+      // nextArrow: <SampleNextArrow />,
+      // prevArrow: <SamplePrevArrow />
+    };
+
   return (
     <div>
         <section id={props.type === "popular" ? "main-sb" : "main-sbmv"}>
@@ -39,7 +78,7 @@ const Slidbar = (props) => {
         {props.type === "284052/similar"  && (
             <>
             <div className='sb-haed'>
-                <p>RECOMMENDED MOVIES FOR YOU</p>
+                <p>{props.title}</p>
             </div>
             <div className='sb-button'>
                     <button>Hindi</button>
@@ -55,21 +94,26 @@ const Slidbar = (props) => {
         {props.type === "top_rated"  && (
             <>
             <div className='sb-haed'>
-                <p>BOLLYWOOD CLASSIC</p>
+                <p>{props.title}</p>
             </div>
             </>
         ) }
 
         
-
-            <div className='sb-card'>
+       
+            {/* <div className='sb-card'> */}
+            {/* <button className='slick-arrow slick-prev'>Prev</button> */}
+            <Slider {...settings} >
             {apiMovUcData.map((movie) => {
                 return <>    
                         <Card movies={movie} />
                          </>
                         })
             }
-            </div>
+            </Slider>
+            {/* <button className='slick-arrow slick-next'>Next</button> */}
+            {/* <button onClick={() => Slider.slickNext()} className='slider-next'>Next</button> */}
+            {/* </div> */}
         </section>
             <section id="showmoresl">
                 {props.type === "top_rated"  && (

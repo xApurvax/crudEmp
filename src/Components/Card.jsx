@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from 'react-router-dom'
 import { FaImdb ,FaHeart } from "react-icons/fa";
 import { BsEye } from "react-icons/bs";
 
@@ -8,14 +9,14 @@ const Card = ({movies}) => {
     <div id="main-card">
             <section id='card'>
                 <div className='card-img'>
-                    <img
+                <Link to={`/movie/${movies.id}`}><img
                     className="card-poster"
                     src={`https://image.tmdb.org/t/p/w185/${movies?.poster_path}`}
                     alt="card"
-                    />
+                    /></Link>
                 </div>
                 <div className='card-head'>
-                    <p>{movies?.original_title}</p>
+                <Link to={`/movie/${movies.id}`}><p>{movies?.original_title}</p></Link>
                 </div>
                 <div className='card-date'>
                     <p className="card-rd">
