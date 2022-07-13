@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {useParams ,Link } from 'react-router-dom'
 import axios from "axios";
 import Slider from "react-slick";
+import { FaImdb } from "react-icons/fa";
 
 const Mlslidebar = (props) => {
 
@@ -47,11 +48,26 @@ const Mlslidebar = (props) => {
         </div>
         <div className='ml-card'>
         <Slider {...settings} >
-        {apiMovMlData?.map((more) => {
+        {apiMovMlData?.map((more,index) => {
                     if(more.poster_path){
-                    return <> <Link to={`/movie/${more.id}`}> 
-                            <img className='ml-card-img' src={`https://image.tmdb.org/t/p/original/${more?.backdrop_path}`} /> </Link> 
-                                </>
+                    return (<div className='ml-card-cont' key={index}> 
+                            <Link  to={`/movie/${more.id}`}> 
+                            <img  className='ml-card-img' src={`https://image.tmdb.org/t/p/original/${more?.backdrop_path}`} />
+                            <div className='ml-info'>
+                              <div className='ml-info-head'>
+                                  <p className='ml-info-title'>{more?.title}</p>
+                                  <p className='ml-info-desc'>{more?.overview}</p>
+                              </div>
+                              <div className='ml-info-rm'>
+                              <div className='ml-info-rating'>
+                                  <FaImdb className="idbm" color={"#FFC907"} size={28}/> 
+                                  <p className='rating-ml'>{(more?.vote_average).toFixed(1)}</p>
+                              </div>
+                                  <p>View Now</p>
+                              </div>
+                            </div>
+                            </Link> 
+                            </div>)
                             }})
         }
         </Slider>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown,IoIosPlay } from "react-icons/io";
+// import { IoPlaySharp } from "react-icons/io";
 import Card from "./Card.jsx";
 import Slider from "react-slick";
 import Ctcard from './Ctcard.jsx';
@@ -63,7 +64,9 @@ const Ctslidebar = (props) => {
                     <p>{props.title}</p>
                 </div>
                 <section id="ct-trail">
-                  <ReactPlayer controls width={"307px"} height={"195px"} url={`https://www.youtube.com/watch?v=${apiMovVidCcData.key}`} />
+                  <ReactPlayer id="ct-trailer" light controls config playing
+                  playIcon={<div className='play-icon' ><IoIosPlay color={"#5436A9"} size={56} /></div>} 
+                  width={"307px"} height={"170px"} url={`https://www.youtube.com/watch?v=${apiMovVidCcData.key}`} />
                 </section>
                 
             </div>

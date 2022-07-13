@@ -488,6 +488,8 @@ color: #FFFFFF;
 .sb-haed{
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 80;
 }
 
 #ct-haed{
@@ -517,12 +519,42 @@ color: #FFFFFF;
     justify-content: center;
     align-items: center;
     width: 310px;
-    /* background-color: red; */
+    border-radius: 30px;
 }
 
-/* #main-trailer{
-    width: 310px;
+.react-player__preview{
+    border-radius: 7px;
+}
+
+.react-player__shadow{
+    background-color: #FAFAFA !important;
+    margin-top: 90px !important;
+}
+
+.react-player__preview{
+    display: block !important;
+}
+
+
+/* .react-player__play-icon{ 
+    border-color: transparent transparent transparent #5436A9 !important;
+    margin: 0px;
 } */
+
+.play-icon{
+    background-color: #FAFAFA;
+    color: #5436A9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    padding: 6.5px 6px 6.5px 7.5px;
+    border-radius: 50%;
+    float: right !important;
+    margin-top: 115px !important;
+    margin-right: 10px !important;
+}
 
 #ct-haed p{
     font-family: 'Montserrat';
@@ -800,4 +832,116 @@ color: #FFFFFF;
     /* object-fit: cover;   */
     filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.36));
     border-radius: 7px;
+}
+
+.ml-info-desc{
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.ml-info-title{
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.ml-info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ml-info  .ml-info-rating{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ml-info .rating-ml{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFC907;
+}
+
+.ml-card a{
+    text-decoration: none;
+}
+
+.ml-info-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow:ellipsis ;
+}
+
+.ml-info-desc {
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #A9A9A9;
+}
+
+.ml-info-rm p{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #5436A9;
+}
+
+.ml-card-cont{
+    position: relative;
+    overflow: hidden;
+}
+
+.ml-info {
+    background: rgba(0,0,0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 100%;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+    height: 172px;
+    width: 289px;  
+}
+
+.ml-card-cont:hover .ml-info {
+    top: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.ml-info .ml-info-rm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

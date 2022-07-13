@@ -25,18 +25,22 @@ const Homepage = ({id , movieId}) => {
 
     const fetchMovieData = async () => {
       let url = base_url+movie_id+"?api_key=7a6e110a340d0908688b03ce0569944f";
-      const { data } = await axios.get(url);
+      const { data ,status } = await axios.get(url);
       // console.log(data);
-      setMovApiData(data);
+      if(status === 200){
+        setMovApiData(data);
+      }
       // console.log(apiMovData, "m data");
     };
     
     const fetchImageData = async () => {
       let url =
       base_url+movie_id+"/images?api_key=7a6e110a340d0908688b03ce0569944f";
-      const { data } = await axios.get(url);
+      const { data ,status } = await axios.get(url);
       // console.log(data);
-      setImgApiData(data);
+      if(status === 200){
+        setImgApiData(data);
+      }
       console.log(apiImgData, "images");
     };
 
