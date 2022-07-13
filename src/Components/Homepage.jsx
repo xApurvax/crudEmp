@@ -1,49 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {useParams } from 'react-router-dom'
 import { BsPlayFill,BsDownload } from "react-icons/bs";
 import { MdAdd } from "react-icons/md";
 import { FaImdb } from "react-icons/fa";
 
-const Homepage = () => {
-  let {id} = useParams();
-  const [movieId, setMovieId] = useState('284052');
+const Homepage = ({id , movieId}) => {
+  // let {id} = useParams();
+  const [movie_id, setmovie_id] = useState('284052');
   const [apiMovData, setMovApiData] = useState([]);
   const [apiImgData, setImgApiData] = useState([]);
   
-  console.log(id,"movie id")
+  // console.log(id,"movie id")
 
   useEffect(() => {
-    if(id) {
-      setMovieId(id);
+    if(movieId) {
+      setmovie_id(movieId);
     }else{
-      setMovieId('284052');
+      setmovie_id('284052');
     }
 
-    console.log({movieId});
+    // console.log({movie_id});
 
     const base_url= "https://api.themoviedb.org/3/movie/";
 
     const fetchMovieData = async () => {
-      let url = base_url+movieId+"?api_key=7a6e110a340d0908688b03ce0569944f";
+      let url = base_url+movie_id+"?api_key=7a6e110a340d0908688b03ce0569944f";
       const { data } = await axios.get(url);
-      console.log(data);
+      // console.log(data);
       setMovApiData(data);
-      console.log(apiMovData, "m data");
+      // console.log(apiMovData, "m data");
     };
     
     const fetchImageData = async () => {
       let url =
-      base_url+movieId+"/images?api_key=7a6e110a340d0908688b03ce0569944f";
+      base_url+movie_id+"/images?api_key=7a6e110a340d0908688b03ce0569944f";
       const { data } = await axios.get(url);
-      console.log(data);
+      // console.log(data);
       setImgApiData(data);
       console.log(apiImgData, "images");
     };
 
     fetchMovieData();
     fetchImageData();
-  }, [movieId,apiMovData,apiImgData]);
+  // }, []);
+  }, [movie_id,apiMovData,apiImgData]);
 
   if (apiImgData.length === 0 || apiMovData.length === 0) {
     return <p>loading...</p>;
@@ -95,7 +95,7 @@ const Homepage = () => {
             <button className="list">
               MY LIST <MdAdd size={28} id="wl-icons" />
             </button>
-            {movieId == id && 
+            {movie_id == id && 
             <button className="download">
               <BsDownload size={28} id="wl-icons" />
             </button>}
@@ -111,7 +111,7 @@ const Homepage = () => {
             </p>
           </div>
 
-          {movieId == id &&     
+          {movie_id == id &&     
           <>
           <div className="genres-hp">
             <div className="genres-hp-head">

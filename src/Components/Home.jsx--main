@@ -5,24 +5,28 @@ import Sidebar from "./Sidebar.jsx";
 import Homepage from "./Homepage.jsx";
 import Slidbar from "./Slidbar.jsx";
 import Footer from "./Footer.jsx";
-import Ctslidebar from "./Ctslidebar.jsx";
-import Mlslidebar from "./Mlslidebar.jsx";
 import './Comp.css';
 
 const Home = () => {
+
   let {id} = useParams();
   console.log(id,"movie id main...................................................");
+  // if(id) {
+  //   setMovieId(id);
+  // }else {
+  //   setMovieId('284052'); 
+  // }
 
-  const [movieId, setMovieId] = useState('284052');
-
+  const [movieId, setMovieId] = useState(id);
   useEffect(() => {
-    if(id) {
-      setMovieId(id); 
-    }else {
+    if(!movieId) {
       setMovieId('284052'); 
     }
+    // else {
+    //   setMovieId('284052'); 
+    // }
     console.log({movieId},"hiiiiii");
-  },[movieId, id]);
+  },[movieId]);
 
   return (
     <div>
@@ -30,17 +34,17 @@ const Home = () => {
         <Sidebar />
         <Homepage id={id} movieId={movieId} />
         {movieId === '284052' ?
-          <>
-            <Slidbar type={"284052/similar"} title={"RECOMMENDED MOVIES FOR YOU"} />
-            <Slidbar type={"popular"} title={"MOVIES YOU MUST WATCH"}/> 
-            <Slidbar type={"top_rated"} title={"BOLLYWOOD CLASSIC"} />
-          </>
+          <Slidbar type={"284052/similar"} title={"RECOMMENDED MOVIES FOR YOU"} />
           :
-          <>
-            <Ctslidebar  type={"credits"}  for={"CAST AND CREW INFO"} m_Id={movieId} title={"TRAILER"}/>
-            <Mlslidebar for={"MORE LIKE THIS"} m_Id={movieId} type={"similar"} play={"videos"} />
-          </>
+          <Slidbar type={"popular"} title={"MOVIES YOU MUST WATCH"}/>
         }
+        {/* {movieId === '284052' ? 
+          <Slidbar type={"284052/similar"} title={"RECOMMENDED MOVIES FOR YOU"} />
+        :
+          <Slidbar type={"popular"} title={"MOVIES YOU MUST WATCH"}/>
+        } */}
+          {/* <Slidbar type={"popular"} title={"MOVIES YOU MUST WATCH"}/> */}
+          {/* <Slidbar type={"top_rated"} title={"BOLLYWOOD CLASSIC"} /> */}
         <Footer />
     </div>
   )

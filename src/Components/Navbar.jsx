@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link } from 'react-router-dom'
 import user from "./user.png"
 import './Comp.css';
 import { FiGift,FiBell } from 'react-icons/fi';
@@ -10,13 +11,13 @@ const Navbar = () => {
     <nav id="main-nav">
         <div id="nav-left">
                 <div className='nav-logo'>
-                    DRAMATIC
+                    <Link to="/">DRAMATIC</Link>
                 </div>
                 <div className='nav-list'>
-                    <li><a href='#'>HOME</a></li>
-                    <li><a href='#'>TV SHOW</a></li>
-                    <li><a href='#'>MOVIE</a></li>
-                    <li><a href='#'>NEW</a></li>
+                    <li><Link to="/">HOME</Link></li>
+                    <li><Link to="/">TV SHOW</Link></li>
+                    <li><Link to="/">MOVIE</Link></li>
+                    <li><Link to="/">NEW</Link></li>
                 </div>
         </div>
         <div id="nav-right">

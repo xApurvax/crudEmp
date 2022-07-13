@@ -4,7 +4,7 @@ import Home from "./Components/Home.jsx";
 
 function App() {
   return (
-    <div >
+    <div className="App">
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Home />} />

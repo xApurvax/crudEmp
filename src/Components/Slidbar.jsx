@@ -5,6 +5,7 @@ import Card from "./Card.jsx";
 import Slider from "react-slick";
 
 const Slidbar = (props) => {
+
     const [apiMovUcData, setMovUcApiData] = useState([]);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const Slidbar = (props) => {
       fetchMovieUcData();
     }, []);
   
-    if (apiMovUcData?.length === 0 ) {
+    if (apiMovUcData.length === 0 ) {
       return <p>loading...</p>;
     }
     
@@ -47,6 +48,7 @@ const Slidbar = (props) => {
     let settings = {
       dots: false,
       infinite: true,
+      // draggable:false,
       speed: 500,
       slidesToShow: 6,
       slidesToScroll: 1,
@@ -81,11 +83,12 @@ const Slidbar = (props) => {
                 <p>{props.title}</p>
             </div>
             <div className='sb-button'>
-                    <button>Hindi</button>
+                    <button style={ {backgroundColor:"#E43109"}}>Hindi</button>
                     <button>Bengali</button>
                     <button>Marathi</button>
                     <button>Assamese</button>
                     <button>Telugu</button>
+                    <button style={ {backgroundColor:"#E43109"}}>Tamil</button>
                     <button>Malyalam</button>
             </div>
             </>
