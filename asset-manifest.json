@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/crudEmp/static/css/main.ec10547b.css",
+    "main.js": "/crudEmp/static/js/main.1d769118.js",
+    "index.html": "/crudEmp/index.html",
+    "main.ec10547b.css.map": "/crudEmp/static/css/main.ec10547b.css.map",
+    "main.1d769118.js.map": "/crudEmp/static/js/main.1d769118.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec10547b.css",
+    "static/js/main.1d769118.js"
+  ]
+}
