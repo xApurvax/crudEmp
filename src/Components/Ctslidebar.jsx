@@ -6,11 +6,21 @@ import Card from "./Card.jsx";
 import Slider from "react-slick";
 import Ctcard from './Ctcard.jsx';
 import ReactPlayer from 'react-player/youtube'
+// import Swiper from 'react-slider-swiper';
+
 
 const Ctslidebar = (props) => {
  
     const [apiMovCcData, setMovCcApiData] = useState([]);
     const [apiMovVidCcData, setMovVidCcApiData] = useState([]);
+
+    const params = {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      spaceBetween: 30
+    }
 
     useEffect(() => {
       const fetchMovieCcData = async () => {
@@ -42,16 +52,16 @@ const Ctslidebar = (props) => {
     
     let settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 5,
       slidesToScroll: 1,
       arrows: false,
       swipeToSlide: true,
-    //   autoplay: true,
-    //   autoplaySpeed: 1500,
-    //   pauseOnHover: true,
-    //   easse: "linear",
+      autoplay: true,
+      autoplaySpeed: 1500,
+      pauseOnHover: true,
+      easse: "linear",
       // nextArrow: <SampleNextArrow />,
       // prevArrow: <SamplePrevArrow />
     };
@@ -76,7 +86,8 @@ const Ctslidebar = (props) => {
                     <p className='ct-cont-head'>{props.for}</p>
                 </div>
                 <div className='ct-cards'>
-                {/* <Slider {...settings} > */}
+                <Slider {...settings} >
+                {/* <Swiper {...params}> */}
                 {apiMovCcData?.map((cast) => {
                     if(cast.profile_path){
                     return <>    
@@ -84,7 +95,8 @@ const Ctslidebar = (props) => {
                                 </>
                             }})
                 }
-                {/* </Slider>   */}
+                {/* </Swiper> */}
+                </Slider>  
                 </div>
                 <section id="showmoresl-ct">
                 {props.type === "credits"  && (

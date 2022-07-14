@@ -14,6 +14,7 @@ const Mlslidebar = (props) => {
         const url =
           `https://api.themoviedb.org/3/movie/${props.m_Id}/${props.type}?api_key=7a6e110a340d0908688b03ce0569944f`;
         const { data } = await axios.get(url);
+        
         setMovMlApiData(data.results);
       };
 
@@ -63,7 +64,7 @@ const Mlslidebar = (props) => {
                                   <FaImdb className="idbm" color={"#FFC907"} size={28}/> 
                                   <p className='rating-ml'>{(more?.vote_average).toFixed(1)}</p>
                               </div>
-                                  <p>View Now</p>
+                                  {/* <p style={{color:""}}>View Now</p> */}
                               </div>
                             </div>
                             </Link> 
