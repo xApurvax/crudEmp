@@ -9,7 +9,7 @@ import { TbUserCircle } from 'react-icons/tb';
 const Navbar = () => {
   return (
     <div>
-        <section className='flex justify-center items-center pt-[5px] pb-[10px] gap-[225px] bg-[#001240] mb-[0px] '>
+        <section className='flex justify-center items-center pt-[5px] pb-[10px] gap-[225px] bg-[#001240] mb-[0px] fixed z-50 top-0 left-0 right-0 '>
         <div className='flex gap-[50px] '>
             <div className='w-[144px]'>
                 <img src={Navlogo} alt="logo" />

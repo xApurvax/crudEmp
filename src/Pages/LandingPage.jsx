@@ -10,6 +10,7 @@ import { end_url } from './Config'
 const LandingPage = () => {
 
   const [cardApi, setCardApi] = useState(null);
+  const [matchStatus , setMatchStatus] = useState([]);
 
   const fetchData = async() => {
     const {data,status} =  await axios.get(base_url+api_token+"include=localteam,visitorteam,runs,season,league")
@@ -18,9 +19,18 @@ const LandingPage = () => {
     if(status === 200){
       setCardApi(data.data.splice(2,10))
     }
+
+    const mStatus = data.data.filter((mData) => {
+        if(mData.live === "false"){
+          return mData;
+        }
+    }).splice(2,10)
+    setMatchStatus(mStatus);
   };
+
   
   useEffect(() => {
+      // console.log(matchStatus,"finished");
       fetchData();        
   }, [])
 
@@ -28,22 +38,8 @@ const LandingPage = () => {
     <div>
         <Navbar />
         <Sliderbar cardDataApi = {cardApi} />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        {/* <Sliderbar cardDataApi = {cardApi} /> */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <Sliderbar matchStatusData = {matchStatus} />
+       
         <Footer />
     </div>
   )

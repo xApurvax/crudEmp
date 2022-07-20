@@ -2,8 +2,21 @@ import React from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { AiFillPlayCircle } from "react-icons/ai";
 
-const Card = ({matches}) => {
-  console.log(matches,"matches");
+const Card = ({matches}) => { 
+
+    const [localScore]  = matches.runs.filter((data)=>{
+      if(data.team_id === matches.localteam.id){
+          return data;
+      }
+    })
+    
+    const [visitorScore]  = matches.runs.filter((data)=>{
+      if(data.team_id === matches.visitorteam.id){
+          return data;
+      }
+    })
+
+  console.log(localScore,"local");
   return (
       <div className="">
         <section className="group w-[328px] relative ">
@@ -41,10 +54,10 @@ const Card = ({matches}) => {
                 </div>
                 <div className="flex flex-col items-start ">
                   <div className="font-[600] text-[#666666] text-[14px] ">
-                    <p>{matches?.runs[0]?.score}/{matches?.runs[0]?.wickets}</p>
+                    <p>{localScore?.score}/{localScore?.wickets}</p>
                   </div>
                   <div className="text-[#999999] text-[12px]">
-                    <p>{matches?.runs[0]?.overs} overs</p>
+                    <p>{localScore?.overs} overs</p>
                   </div>
                 </div>
               </div>
@@ -71,10 +84,10 @@ const Card = ({matches}) => {
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="font-[600] text-[#666666] text-[14px] ">
-                    <p>{matches?.runs[1]?.score}/{matches?.runs[1]?.wickets}</p>
+                    <p>{visitorScore?.score}/{visitorScore.wickets}</p>
                   </div>
                   <div className="text-[#999999] text-[12px]">
-                    <p>{matches?.runs[1]?.overs} overs</p>
+                    <p>{visitorScore.overs} overs</p>
                   </div>
                 </div>
               </div>

@@ -36,9 +36,10 @@ const SamplePrevArrow =(props) => {
 }
 
 
-const Sliderbar = ({cardDataApi}) => {
+const Sliderbar = ({cardDataApi,matchStatusData}) => {
   
   console.log(cardDataApi,"cardsss");
+  console.log(matchStatusData,"MatchStatus");
 
   const settings = {
       dots: true,
@@ -81,7 +82,7 @@ const Sliderbar = ({cardDataApi}) => {
 
   return (
     <div>
-        <div className='bg-[#001240] h-[168px] pt-[20px] flex justify-center  '>
+        <div className={` ${(cardDataApi?.live == true || cardDataApi?.live == false) ?  "bg-transparent" : "bg-[#001240]" }  h-[168px] pt-[20px] flex justify-center mt-[59px] mb-[150px] `}>
             <div className='flex flex-col w-[1024px] gap-[16px] ' > 
               <div className ='text-[#FAFAFA] font-[600] leading-[1.6] tracking-[0.2px] text-[20px] '>
                 <p>Featured Matches</p>
