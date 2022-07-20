@@ -36,14 +36,16 @@ const SamplePrevArrow =(props) => {
 }
 
 
-const Sliderbar = () => {
+const Sliderbar = ({cardDataApi}) => {
+  
+  console.log(cardDataApi,"cardsss");
 
   const settings = {
       dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 3,
-      slidesToScroll: 2,
+      slidesToScroll: 3,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
       appendDots: dots => (
@@ -113,13 +115,12 @@ const Sliderbar = () => {
               </Swiper> */}
 
               <Slider {...settings} className=" h-[210px] ">   
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
+              {cardDataApi?.map((match) => {
+                return <>    
+                        <Card matches={match} />
+                         </>
+                        })
+              }
               </Slider>
               </div>
             </div>

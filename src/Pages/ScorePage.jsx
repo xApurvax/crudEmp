@@ -4,6 +4,7 @@ import Footer from '../Layouts/Footer'
 import ScoreBoard from '../Components/ScoreBoard'
 
 const ScorePage = () => {
+
   return (
     <div>
         <Navbar />

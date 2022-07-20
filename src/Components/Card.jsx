@@ -1,11 +1,12 @@
 import React from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { AiFillPlayCircle } from "react-icons/ai";
 
-const Card = () => {
+const Card = ({matches}) => {
+  console.log(matches,"matches");
   return (
-      <div>
+      <div className="">
         <section className="group w-[328px] relative ">
-
           <div className="relative ">
             <img
               className="rounded-t-xl "
@@ -15,14 +16,14 @@ const Card = () => {
             <div className="h-[100px] bg-gradient-to-t from-[#000000e6] to-[#00000000] absolute top-0 left-0 right-0 ">
             </div>
             <div className="text-center h-[39px] text-[10px] leading-[1.6] tracking-[1.4px] text-[#FAFAFA]  absolute top-[60px] left-0 right-0 ">
-              <p>#RD ODI INDIA TOUR OF ENGLAND</p>
+              <p>{matches?.round} {matches?.league.name}, {matches?.season.name}</p>
             </div>
           </div>
 
-          <div className="flex flex-col rounded-b-xl border-[1px] border-solid border-[#E6E6E6] ">
-            <div className="text-[#ff5000] text-center absolute top-[82px] left-0 right-0 ">
-              <button className="shadow shadow-black-500/40 bg-white rounded-[30px] p-[10px] font-[600] text-[14px] uppercase tracking-[1.4px] leading-[1] ">
-                Results
+          <div className="flex flex-col rounded-b-xl border-[1px] border-solid border-[#E6E6E6] bg-white overflow-hidden z-5">
+            <div className=" text-center absolute top-[82px] left-0 right-0 ">
+              <button className={`shadow shadow-black-500/40 ${matches?.live ? "bg-[#ff5000] text-[#FAFAFA]"  : "bg-white text-[#ff5000]" } rounded-[30px] px-[10px] py-[6px] font-[600] text-[14px] uppercase tracking-[1.4px] leading-[1]} `}>
+                  {matches?.live ? <div className="flex gap-[4px] "> <AiFillPlayCircle fill="#FAFAFA" size={20} /><p>Watch Live </p> </div>: "Result" }
               </button>
             </div>
 
@@ -31,19 +32,19 @@ const Card = () => {
                 <div className="">
                   <img
                     className="w-[32px] "
-                    src="https://d13ir53smqqeyp.cloudfront.net/flags/cr-flags/FC-ENG@2x.png"
+                    src={matches?.localteam?.image_path}
                     alt="flag"
                   />
                   <div className="text-[#666666] tracking-[1.4px] text-[10px] font-[100] text-center ">
-                    <p>ENG</p>
+                    <p>{matches?.localteam?.code}</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-start ">
                   <div className="font-[600] text-[#666666] text-[14px] ">
-                    <p>259/10</p>
+                    <p>{matches?.runs[0]?.score}/{matches?.runs[0]?.wickets}</p>
                   </div>
                   <div className="text-[#999999] text-[12px]">
-                    <p>45.5 overs</p>
+                    <p>{matches?.runs[0]?.overs} overs</p>
                   </div>
                 </div>
               </div>
@@ -61,30 +62,30 @@ const Card = () => {
                 <div className="">
                   <img
                     className="w-[32px] "
-                    src="https://d13ir53smqqeyp.cloudfront.net/flags/cr-flags/FC-IND@2x.png"
+                    src={matches?.visitorteam?.image_path}
                     alt="flag"
                   />
                   <div className="text-[#666666] text-[10px] font-[100] tracking-[1.4px] text-center ">
-                    <p className="">IND</p>
+                    <p className="">{matches?.visitorteam?.code}</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="font-[600] text-[#666666] text-[14px] ">
-                    <p>259/10</p>
+                    <p>{matches?.runs[1]?.score}/{matches?.runs[1]?.wickets}</p>
                   </div>
                   <div className="text-[#999999] text-[12px]">
-                    <p>45.5 overs</p>
+                    <p>{matches?.runs[1]?.overs} overs</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="text-[12px] leading-[1.33] tracking-[0.24px] text-center mb-[8px] ">
-              <p className="">India beat England by 5 wickets</p>
+              <p className="">{matches?.note}</p>
             </div>
           </div>
 
-        <div className="flex justify-center invisible group-hover:visible group-hover:flex group-hover:justify-center focus:visible bg-[#f0f1f4] w-[328px] rounded-b-xl py-[10px]  ">
+        <div className="flex justify-center invisible relative z-[-1] group-hover:visible group-hover:flex group-hover:justify-center overflow-hidden bg-[#f0f1f4]  w-[328px] rounded-b-xl pt-[20px] pb-[10px] mt-[-10px]   ">
         <div className="flex text-[11px] leading-[1.27] tracking-[0.22px] text-center whitespace-nowrap ">
           <p>More Cricket</p>
           <div>

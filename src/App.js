@@ -6,8 +6,8 @@ import ScorePage from "./Pages/ScorePage.jsx";
 function App() {
   return (
     <div className="App">
-      {/* <LandingPage /> */}
-      <ScorePage/>
+      <LandingPage />
+      {/* <ScorePage/> */}
     </div>
   );
 }

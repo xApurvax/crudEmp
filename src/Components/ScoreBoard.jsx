@@ -3,8 +3,9 @@ import React from 'react'
 const ScoreBoard = () => {
   return (
     <div>
-        <section className='flex justify-center'>
-            <section className='w-[672px] mt-[20px] flex justify-center item-center '>
+      <section className='flex justify-center'>
+        <section className='flex w-[672px] justify-center items-center flex-col'>
+            <section className='mt-[20px] flex justify-center item-center '>
                 <div className='flex gap-[200px] '>
                   <div className='flex flex-col '>
                       <div className='flex text-[11px] leading-[1.27] tracking-[0.3px]  '>
@@ -22,7 +23,7 @@ const ScoreBoard = () => {
                   <div className="flex">
                     <div className="flex flex-col justify-center items-center">
                       <div className="h-[15px] w-[1px] bg-[#e6e6e6] "></div>
-                      <div className="text-[15px] text-[#787878] bg-[#e6e6e6] rounded-[50%]  text-center px-[6px]  ">
+                      <div className="text-[15px] text-[#787878] bg-[#e6e6e6] rounded-[50%]  text-center px-[7px] pt-[3px] ">
                         {/* p-[3px] rounded-[50%] border-solid border-[1px] border-[#ff5000]  */}
                         <p>V</p>
                       </div>
@@ -44,12 +45,33 @@ const ScoreBoard = () => {
                   </div>
                 </div>
             </section>
-            {/* <section className='w-[672px] flex justify-center '>
-                <div className='text-[14px] text-center font-[600] leading-[20px] tracking-[0.28px] pt-[10px] pb-[15px] '>
+
+            <section className='flex justify-center '>
+                <div className='text-[14px] text-[#001240] text-center font-[600] leading-[20px] tracking-[0.28px] pt-[10px] pb-[15px] '>
                   <p>New Zealand beat Irelandn by 1 run</p>
                 </div>
-            </section> */}
+            </section>
+
+            <section className='flex gap-[30px]  border-t-[1px] border-b-[1px] border-solid border-[#e6e6e6] py-[14px] '>
+              <div className='text-[14px] text-[#787878] px-[35px] '>
+                  <p>Fantacy</p>
+              </div>
+              <div className='text-[14px] text-[#787878] px-[35px] '>
+                  <p>Info</p>
+              </div>
+              <div className='text-[14px] text-[#787878] px-[35px] '>
+                  <p>Live</p>
+              </div>
+              <div className='text-[14px] text-[#787878] px-[35px] '>
+                  <p>Scorecard</p>
+              </div>
+              <div className='text-[14px] text-[#787878] px-[35px] '>
+                  <p>Squad</p>
+              </div>
+            </section>
+
         </section>
+      </section>
     </div>
   )
 }
