@@ -14,6 +14,9 @@ const ScorePage = () => {
   const [localScore, setLocalScore] = useState([]);
   const [visitorScore, setVisitorScore] = useState([]);
 
+  const [localTeamBatting , setLocalTeamBatting] = useState([]);
+  const [visitorTeamBatting , setVisitorTeamBatting] = useState([]);
+
   const fetchData = async() => {
     const {data,status} =  await axios.get(base_url+"/"+id+api_token+end_url)
     // console.log(data.data.splice(2,10))
@@ -28,6 +31,7 @@ const ScorePage = () => {
          return mScore 
       } 
     })
+    setLocalScore(localTeamScore[0])
 
     const visitorTeamScore = data.data?.runs?.filter((mScore) => { 
       if (data.data?.visitorteam_id === mScore?.team_id)
@@ -35,11 +39,25 @@ const ScorePage = () => {
         return mScore 
       } 
     })
-        // const localScore = localTeamScore;
-        // const visitorScore = visitorTeamScore;
-        setLocalScore(localTeamScore[0])
-        setVisitorScore(visitorTeamScore[0])
-        // console.log(visitorTeamScore,"score ");
+    setVisitorScore(visitorTeamScore[0])
+
+     const localTeamBat = data.data?.batting?.filter((batting) => { 
+      if (data.data?.localteam.id === batting?.team_id)
+       { 
+        return batting 
+      } 
+    })
+    setLocalTeamBatting(localTeamBat)
+
+    const visitorTeamBat = data.data?.batting?.filter((batting) => { 
+      if (data.data?.visitorteam.id === batting?.team_id)
+       { 
+        return batting 
+      } 
+    })
+    setVisitorTeamBatting(visitorTeamBat)
+    
+        
   };
 
   useEffect(() => {
@@ -51,15 +69,7 @@ const ScorePage = () => {
   return (
     <div>
         <Navbar />
-        <ScoreBoard score={scoreApi} localScore={localScore} visitorScore={visitorScore} />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <ScoreBoard score={scoreApi} localScore={localScore} visitorScore={visitorScore} localTeamBatting={localTeamBatting} visitorTeamBatting={visitorTeamBatting} />
         <Footer />
     </div>
   )

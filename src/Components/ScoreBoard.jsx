@@ -6,7 +6,7 @@ import ScoreDropDown from './ScoreDropDown';
 // import { api_token } from '../Pages/Config'
 // import { end_url } from '../Pages/Config'
 
-const ScoreBoard = ({score,localScore,visitorScore}) => {
+const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamBatting}) => {
 
   console.log(visitorScore ,"score !!!")
   // const [localScore, setLocalScore] = useState([]);
@@ -122,8 +122,8 @@ const ScoreBoard = ({score,localScore,visitorScore}) => {
                 </div>
               </section>
             </section> */}
-            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} />
-            {/* <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} /> */}
+            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting} />
+            <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting} />
         </section>
       </section>
     </div>

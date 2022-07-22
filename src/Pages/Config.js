@@ -6,4 +6,4 @@ export const api_token = "?api_token=NYF1FqiVZnU22X05JPoCKetWP5H3rmZV4kpnyVz5sHr
 
 export const api_token1 = "?api_token=MyCwyoiRowolgxtBa8yf50EUKm68smW0dQwgQ5ulspXyfo11pOxZQWCb5TmE&";
 
-export const end_url = "include=localteam,visitorteam,bowling.team,batting.team,runs.team,bowling.bowler,batting.batsman";
+export const end_url = "include=localteam,visitorteam,bowling.team,batting.team,runs.team,bowling.bowler,batting.batsman,batting.bowler,balls.batsmanout,balls.catchstump,batting.catchstump,batting.catchstump";
