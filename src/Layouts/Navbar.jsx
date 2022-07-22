@@ -12,12 +12,12 @@ const Navbar = () => {
         <section className='flex justify-center items-center pt-[5px] pb-[10px] gap-[225px] bg-[#001240] mb-[0px] fixed z-50 top-0 left-0 right-0 '>
         <div className='flex gap-[50px] '>
             <div className='w-[144px]'>
-                <img src={Navlogo} alt="logo" />
+                 <Link to='/'><img src={Navlogo} alt="logo" /></Link>
             </div>
             <div className='flex gap-[24px] justify-around items-center uppercase list-none font-sans text-[14px] font-[700] leading-[1] tracking-[1.4px] pr-[20px] '>
-                <li className='text-[#ff5000] '><a href='/'>HOME</a></li>
-                <li className='text-white'><a href='/'>SCHEDULE</a></li>
-                <li className='text-white'><a href='/'>SHOP <sup className='text-white bg-[#ff5000] w-[32px] text-[11px] font-[200] text-center rounded-[2px] px-[2px] py-[2px] '>New</sup> </a></li>
+                <li className='text-[#ff5000] '><Link to='/'>HOME</Link></li>
+                <li className='text-white'><Link to='/'>SCHEDULE</Link></li>
+                <li className='text-white'><Link to='/'>SHOP <sup className='text-white bg-[#ff5000] w-[32px] text-[11px] font-[200] text-center rounded-[2px] px-[2px] py-[2px] '>New</sup> </Link></li>
             </div>
         </div>
         <div className='flex items-center gap-[8px]'>

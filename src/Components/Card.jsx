@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from 'react-router-dom'
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { AiFillPlayCircle } from "react-icons/ai";
 
@@ -16,9 +17,10 @@ const Card = ({matches}) => {
       }
     })
 
-  console.log(localScore,"local");
+  // console.log(localScore,"local");
   return (
       <div className="">
+      <Link to={`/match-event/${matches?.id}`}>
         <section className="group w-[328px] relative ">
           <div className="relative ">
             <img
@@ -35,8 +37,8 @@ const Card = ({matches}) => {
 
           <div className="flex flex-col rounded-b-xl border-[1px] border-solid border-[#E6E6E6] bg-white overflow-hidden z-5">
             <div className=" text-center absolute top-[82px] left-0 right-0 ">
-              <button className={`shadow shadow-black-500/40 ${matches?.live ? "bg-[#ff5000] text-[#FAFAFA]"  : "bg-white text-[#ff5000]" } rounded-[30px] px-[10px] py-[6px] font-[600] text-[14px] uppercase tracking-[1.4px] leading-[1]} `}>
-                  {matches?.live ? <div className="flex gap-[4px] "> <AiFillPlayCircle fill="#FAFAFA" size={20} /><p>Watch Live </p> </div>: "Result" }
+              <button className={`shadow shadow-black-500/40 ${matches?.live && matches?.status !== "Aban."  ? "bg-[#ff5000] text-[#FAFAFA]"  : "bg-white text-[#ff5000]" } rounded-[30px] px-[10px] py-[6px] font-[600] text-[14px] uppercase tracking-[1.4px] leading-[1]} `}>
+                  {matches?.live && matches?.status !== "Aban." ? ( <div className="flex gap-[4px] "> <AiFillPlayCircle fill="#FAFAFA" size={20} /><p>Watch Live </p> </div> ) : matches?.status ==="Aban." ?( "Upcoming" ): ("Result" ) }
               </button>
             </div>
 
@@ -44,7 +46,7 @@ const Card = ({matches}) => {
               <div className="flex gap-[10px] ">
                 <div className="">
                   <img
-                    className="w-[32px] "
+                    className="w-[32px] h-[32px]"
                     src={matches?.localteam?.image_path}
                     alt="flag"
                   />
@@ -74,7 +76,7 @@ const Card = ({matches}) => {
               <div className="flex flex-row-reverse gap-[10px] ">
                 <div className="">
                   <img
-                    className="w-[32px] "
+                    className="w-[32px] h-[32px]"
                     src={matches?.visitorteam?.image_path}
                     alt="flag"
                   />
@@ -84,17 +86,17 @@ const Card = ({matches}) => {
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="font-[600] text-[#666666] text-[14px] ">
-                    <p>{visitorScore?.score}/{visitorScore.wickets}</p>
+                    <p>{visitorScore?.score}/{visitorScore?.wickets}</p>
                   </div>
                   <div className="text-[#999999] text-[12px]">
-                    <p>{visitorScore.overs} overs</p>
+                    <p>{visitorScore?.overs} overs</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="text-[12px] leading-[1.33] tracking-[0.24px] text-center mb-[8px] ">
-              <p className="">{matches?.note}</p>
+              <p className="overflow-hidden whitespacing-no-wrap text-overflow-ellipsis truncate">{matches?.note}</p>
             </div>
           </div>
 
@@ -112,6 +114,7 @@ const Card = ({matches}) => {
         </div>
 
         </section>
+        </Link>
       </div>
   );
 };

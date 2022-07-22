@@ -3,11 +3,6 @@ import Card from './Card';
 import Slider from "react-slick";
 import "./Comp.css"
 import { HiArrowLeft,HiArrowRight } from 'react-icons/hi';
-// import {Swiper,SwiperSlide } from 'swiper/react';
-// import { Mousewheel, Pagination , Navigation } from "swiper";
-// import 'swiper/css';
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
 
 const SampleNextArrow =(props) => {
   const { className, style, onClick } = props;
@@ -36,12 +31,11 @@ const SamplePrevArrow =(props) => {
 }
 
 
-const Sliderbar = ({cardDataApi}) => {
-  
-  console.log(cardDataApi,"cardsss");
-  // console.log(matchStatusData,"MatchStatus");
+const StatusSlidebar = ({matchStatusData ,title}) => {
 
-  const settings = {
+    // console.log(matchStatusData,"finished matches")
+
+    const settings = {
       dots: true,
       infinite: true,
       speed: 500,
@@ -70,7 +64,7 @@ const Sliderbar = ({cardDataApi}) => {
         <div
           style={{
             width: "30px",
-            color: "white",
+            color: "black",
             // border: "1px blue solid",
             position: 'relative',
           }}
@@ -82,10 +76,10 @@ const Sliderbar = ({cardDataApi}) => {
 
   return (
     <div>
-        <div className= "bg-[#001240]  h-[168px] pt-[20px] flex justify-center mt-[59px] mb-[150px]">
+        <div className=" h-[168px] pt-[20px] flex justify-center mt-[59px] mb-[160px] ">
             <div className='flex flex-col w-[1024px] gap-[16px] ' > 
-              <div className ='text-[#FAFAFA] font-[600] leading-[1.6] tracking-[0.2px] text-[20px] '>
-                <p>Featured Matches</p>
+              <div className ='text-[#000] font-[600] leading-[1.6] tracking-[0.2px] text-[20px] '>
+                <p>{title}</p>
               </div>
               <div className=''>
                    
@@ -116,7 +110,7 @@ const Sliderbar = ({cardDataApi}) => {
               </Swiper> */}
 
               <Slider {...settings} className=" h-[210px] ">   
-              {cardDataApi?.map((match) => {
+              {matchStatusData?.map((match) => {
                 return <>    
                         <Card matches={match} />
                          </>
@@ -131,4 +125,4 @@ const Sliderbar = ({cardDataApi}) => {
   )
 }
 
-export default Sliderbar
+export default StatusSlidebar
