@@ -6,9 +6,9 @@ import ScoreDropDown from './ScoreDropDown';
 // import { api_token } from '../Pages/Config'
 // import { end_url } from '../Pages/Config'
 
-const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamBatting}) => {
+const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamBatting,localTeamBowling,visitorTeamBowling,viExtras,loExtras,lineUpLocal,lineUpVisitor,dNBLocal,dNBVisitor}) => {
 
-  console.log(visitorScore ,"score !!!")
+  // console.log(visitorScore ,"score !!!")
   // const [localScore, setLocalScore] = useState([]);
   // const [visitorScore, setVisitorScore] = useState([]);
 
@@ -122,8 +122,8 @@ const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamB
                 </div>
               </section>
             </section> */}
-            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting} />
-            <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting} />
+            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting} bowling={localTeamBowling} Extras={loExtras} donotbat={dNBLocal} lineup={lineUpLocal} />
+            <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting} bowling={visitorTeamBowling} Extras={viExtras} donotbat={dNBVisitor} lineup={lineUpVisitor} />
         </section>
       </section>
     </div>
