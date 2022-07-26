@@ -1,5 +1,6 @@
 import React,{useRef} from 'react';
 import Card from './Card';
+import SlideLoader from './SlideLoader';
 import Slider from "react-slick";
 import "./Comp.css"
 import { HiArrowLeft,HiArrowRight } from 'react-icons/hi';
@@ -115,7 +116,7 @@ const Sliderbar = ({cardDataApi}) => {
                 <SwiperSlide> <Card /></SwiperSlide>
                 <SwiperSlide> <Card /></SwiperSlide>
               </Swiper> */}
-              {cardDataApi ? (
+        
               <Slider {...settings} className=" h-[210px] ">   
               {cardDataApi?.map((match) => {
                 return <> 
@@ -123,12 +124,7 @@ const Sliderbar = ({cardDataApi}) => {
                         </>
                         })
               }
-              </Slider>)
-              : 
-                (<div className='flex justify-center items-center'> 
-                    <GiAmericanFootballHelmet  size={100} fill="#ff5000" />
-                </div> )
-              }
+              </Slider>
               </div>
             </div>
             

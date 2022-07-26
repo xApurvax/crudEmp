@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Link } from 'react-router-dom'
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { AiFillPlayCircle } from "react-icons/ai";
+import SlideLoader from "./SlideLoader";
 
 
 const Card = ({matches}) => { 
+
+  const [dummyDealy , setDummyDelay] = useState()
 
     const [localScore]  = matches.runs.filter((data)=>{
       if(data.team_id === matches.localteam.id){
@@ -18,9 +21,16 @@ const Card = ({matches}) => {
       }
     })
 
+    useEffect(() => {
+   setTimeout(() => {
+    setDummyDelay(matches)
+   }, 1000);
+    }, )
+    
   // console.log(localScore,"local");
-  return (
-   
+  return (<>
+   {dummyDealy ? 
+      (
       <div className="">
       <Link to={`/match-event/${matches?.id}`}>
         <section className="group w-[328px] relative ">
@@ -117,7 +127,10 @@ const Card = ({matches}) => {
 
         </section>
         </Link>
-      </div>
-)}
+      </div>)
+      :
+      (<SlideLoader />)
+    }
+</>)}
 
 export default Card;

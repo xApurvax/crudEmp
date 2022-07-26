@@ -3,6 +3,7 @@ import Card from './Card';
 import Slider from "react-slick";
 import "./Comp.css"
 import { HiArrowLeft,HiArrowRight } from 'react-icons/hi';
+import SlideLoader from './SlideLoader';
 
 const SampleNextArrow =(props) => {
   const { className, style, onClick } = props;
@@ -108,7 +109,7 @@ const StatusSlidebar = ({matchStatusData ,title}) => {
                 <SwiperSlide> <Card /></SwiperSlide>
                 <SwiperSlide> <Card /></SwiperSlide>
               </Swiper> */}
-
+          
               <Slider {...settings} className=" h-[210px] ">   
               {matchStatusData?.map((match) => {
                 return <>    

@@ -65,7 +65,7 @@ const LandingPage = () => {
         (<div className='flex min-h-[650px] justify-center items-center animate-pulse '> 
         {/* (<div className='flex min-h-[700px] justify-center items-center animate-bounce bg-[#f6f6f6] '>  */}
                     <GiAmericanFootballHelmet  size={200} fill="#ff5000" />
-                    {/* <img className='h-[100px] w-[100px] ' src="https://png.pngitem.com/pimgs/s/133-1332495_transparent-red-ball-png-transparent-background-cricket-ball.png"/> */}
+                    {/* <img alt="ball" className='h-[100px] w-[100px] ' src="https://png.pngitem.com/pimgs/s/133-1332495_transparent-red-ball-png-transparent-background-cricket-ball.png"/> */}
         </div> )}
         <Footer />
     </div>
