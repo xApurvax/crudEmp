@@ -24,7 +24,7 @@ const ScoreDropDown = ({score,teamScore,teamCode,Batting,bowling,lineup,Extras,d
                     <div onClick={() => setDropDown(!dropDown)}><IoIosArrowDropdownCircle className={` ${dropDown ?  "rotate-180 fill-[#ff5000] ": "rotate-0 " } transition-all ease-in-out duration-500`} color="#ffb999" size={30} /></div>
                 </div>
         </section>
-        <section className={` ${dropDown ? " max-h-[1560px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 `}>
+        <section className={` ${dropDown ? " max-h-[1800px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 `}>
                 <div className='flex justify-between items-center p-[10px] bg-[#fafafa] rounded-[10px] mt-[20px] mx-[10px] '>
                     <div className='text-[12px] uppercase leading-[1.57] tracking-[1px] text-[#787878] '>
                         <p>Batsmen</p>
@@ -151,7 +151,7 @@ const ScoreDropDown = ({score,teamScore,teamCode,Batting,bowling,lineup,Extras,d
                         </tbody>
                     </table>
                 </div>
-                {Batting?.map((bat) => {
+                {Batting?.sort((a,b) => (a.fow_balls > b.fow_balls)? 1 : -1).map((bat) => {
                     return(
                         <div>      
                         { bat?.fow_balls > 0 && bat?.bowler?.fullname.length > 0 && 
