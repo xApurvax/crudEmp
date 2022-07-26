@@ -5,9 +5,10 @@ import Sliderbar from '../Components/Sliderbar'
 import Footer from '../Layouts/Footer'
 import axios from "axios";
 import { base_url } from './Config'
-import { api_token } from './Config'
+import { api_token,api_token1 } from './Config'
 import { end_url } from './Config'
 import StatusSlidebar from '../Components/StatusSlidebar';
+import { GiAmericanFootballHelmet } from 'react-icons/gi';
 
 const LandingPage = () => {
 
@@ -55,9 +56,17 @@ const LandingPage = () => {
   return (
     <div>
         <Navbar />
+        {cardApi ? (
+          <>
         <Sliderbar cardDataApi = {cardApi} />
         <StatusSlidebar title ="Finished Match" matchStatusData = {matchStatus} />
         <StatusSlidebar title ="Upcoming Match" matchStatusData = {upcomingStatus} />
+        </>) :
+        (<div className='flex min-h-[650px] justify-center items-center animate-pulse '> 
+        {/* (<div className='flex min-h-[700px] justify-center items-center animate-bounce bg-[#f6f6f6] '>  */}
+                    <GiAmericanFootballHelmet  size={200} fill="#ff5000" />
+                    {/* <img className='h-[100px] w-[100px] ' src="https://png.pngitem.com/pimgs/s/133-1332495_transparent-red-ball-png-transparent-background-cricket-ball.png"/> */}
+        </div> )}
         <Footer />
     </div>
   )

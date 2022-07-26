@@ -3,6 +3,7 @@ import {Link } from 'react-router-dom'
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { AiFillPlayCircle } from "react-icons/ai";
 
+
 const Card = ({matches}) => { 
 
     const [localScore]  = matches.runs.filter((data)=>{
@@ -19,6 +20,7 @@ const Card = ({matches}) => {
 
   // console.log(localScore,"local");
   return (
+   
       <div className="">
       <Link to={`/match-event/${matches?.id}`}>
         <section className="group w-[328px] relative ">
@@ -116,7 +118,6 @@ const Card = ({matches}) => {
         </section>
         </Link>
       </div>
-  );
-};
+)}
 
 export default Card;

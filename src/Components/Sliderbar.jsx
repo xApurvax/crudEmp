@@ -3,6 +3,7 @@ import Card from './Card';
 import Slider from "react-slick";
 import "./Comp.css"
 import { HiArrowLeft,HiArrowRight } from 'react-icons/hi';
+import { GiAmericanFootballHelmet } from 'react-icons/gi';
 // import {Swiper,SwiperSlide } from 'swiper/react';
 // import { Mousewheel, Pagination , Navigation } from "swiper";
 // import 'swiper/css';
@@ -114,15 +115,20 @@ const Sliderbar = ({cardDataApi}) => {
                 <SwiperSlide> <Card /></SwiperSlide>
                 <SwiperSlide> <Card /></SwiperSlide>
               </Swiper> */}
-
+              {cardDataApi ? (
               <Slider {...settings} className=" h-[210px] ">   
               {cardDataApi?.map((match) => {
-                return <>    
+                return <> 
                         <Card matches={match} />
-                         </>
+                        </>
                         })
               }
-              </Slider>
+              </Slider>)
+              : 
+                (<div className='flex justify-center items-center'> 
+                    <GiAmericanFootballHelmet  size={100} fill="#ff5000" />
+                </div> )
+              }
               </div>
             </div>
             

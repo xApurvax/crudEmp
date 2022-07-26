@@ -3,6 +3,7 @@ import axios from "axios";
 import {useParams } from 'react-router-dom'
 import { base_url ,api_token,end_url } from '../Pages/Config'
 import ScoreDropDown from './ScoreDropDown';
+import { Audio } from  'react-loader-spinner'
 // import { api_token } from '../Pages/Config'
 // import { end_url } from '../Pages/Config'
 
@@ -33,8 +34,9 @@ const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamB
   //   }
 
 
-  return (
-    <div>
+  return (<>
+    {(score && localScore && visitorScore && localTeamBatting && visitorTeamBatting && localTeamBowling && visitorTeamBowling && viExtras && loExtras && lineUpLocal && lineUpVisitor && dNBLocal && dNBVisitor) ? 
+   ( <div>
       <section className='flex justify-center mt-[65px] '>
         <section className='flex w-[672px] min-h-[700px] flex-col'>
             <section className='mt-[20px] flex justify-center items-center '>
@@ -121,13 +123,16 @@ const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamB
                     <div><IoIosArrowDropdownCircle color="#ffb999" size={24} /></div>
                 </div>
               </section>
-            </section> */}
+            </section> */} 
             <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting} bowling={localTeamBowling} Extras={loExtras} donotbat={dNBLocal} lineup={lineUpLocal} />
             <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting} bowling={visitorTeamBowling} Extras={viExtras} donotbat={dNBVisitor} lineup={lineUpVisitor} />
         </section>
       </section>
-    </div>
-  )
+    </div>) :
+    ( <div className='flex justify-center items-center min-h-[450px] '>	
+          <Audio color="#ff5000"  height={150} width={150} />
+    </div>) }
+ </> )
 }
 
 export default ScoreBoard
