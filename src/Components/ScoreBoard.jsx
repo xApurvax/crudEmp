@@ -36,8 +36,8 @@ const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamB
   return (
     <div>
       <section className='flex justify-center mt-[65px] '>
-        <section className='flex w-[672px] justify-center items-center flex-col'>
-            <section className='mt-[20px] flex justify-center item-center '>
+        <section className='flex w-[672px] min-h-[700px] flex-col'>
+            <section className='mt-[20px] flex justify-center items-center '>
                 <div className='flex gap-[200px] '>
                   <div className='flex flex-col '>
                       <div className='flex text-[11px] leading-[1.27] tracking-[0.3px]  '>

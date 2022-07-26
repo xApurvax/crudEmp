@@ -13,7 +13,6 @@ const ScorePage = () => {
   const [scoreApi, setScoreApi] = useState(null);
   const [localScore, setLocalScore] = useState([]);
   const [visitorScore, setVisitorScore] = useState([]);
-
   const [localTeamBatting , setLocalTeamBatting] = useState([]);
   const [visitorTeamBatting , setVisitorTeamBatting] = useState([]);
   const [localTeamBowling , setLocalTeamBowling] = useState([]);
@@ -113,35 +112,45 @@ const ScorePage = () => {
     })
     setLineUpVisior(visitorTeamLu)
 
-    const localTeamDnb = localTeamLu.filter((batsman)=> 
-                          localTeamBat.every((notbated)=> 
+    const localTeamDnb = localTeamLu.filter((batsman)=> {
+      if(data.data?.localteam.id === batsman?.lineup.team_id)
+                  {return localTeamBat.every((notbated)=> 
                           notbated.batsman.id !== batsman.id
                           )
-                        )
+    }})
 
     setDNBLocal(localTeamDnb);
 
-    console.log(dNBLocal,"hiii")
-
-    const visitorTeamDnb = visitorTeamLu.filter((batsman)=> 
-                           visitorTeamBat.every((notbated)=> 
+    const visitorTeamDnb = data.data?.lineup?.filter((batsman)=> {
+    if(data.data?.visitorteam.id === batsman?.lineup.team_id)
+                  {return visitorTeamBat.every((notbated)=> 
                           notbated.batsman.id !== batsman.id
                           )
-                        )
+    }})
 
     setDNBVisior(visitorTeamDnb);
 
-    console.log(dNBVisitor,"hello")
+    // console.log(dNBLocal,"hiii")
+
+    // const visitorTeamDnb = visitorTeamLu.filter((batsman)=> 
+    //                        visitorTeamBat.every((notbated)=> 
+    //                       notbated.batsman.id !== batsman.id
+    //                       )
+    //                     )
+
+    // setDNBVisior(visitorTeamDnb);
+
+
     
     // console.log('localTeamLu',localTeamLu.filter((batsman)=> localTeamBat.every((notbated)=> notbated.batsman.id !== batsman.id)),'localTeamBat',localTeamBat,)
-
-
+    
+    
     
     // let localTeamDnb = localTeamLu.filter((el)=> {
-    //   return !localTeamBatting.find((f)=> {
-    //     return item.id === itemP.id;
-    //   })
-    // })
+      //   return !localTeamBatting.find((f)=> {
+        //     return item.id === itemP.id;
+        //   })
+        // })
 
     // const localTeamDnb = localTeamLu.filter((dnb) => { 
     //   if (localTeamBat.batsman.id === dnb?.id )
@@ -150,15 +159,16 @@ const ScorePage = () => {
     //   } 
     // })
     // setDNBLocal(localTeamDnb)
-
+    
     // const visitorTeamDnb = data.data?.filter((dnb) => { 
-    //   if (data.data?.visitorteam.id === dnb?.lineup.team_id)
-    //    { 
-    //     return dnb 
-    //   } 
-    // })
-    // setDNBVisior(visitorTeamDnb)
-  
+      //   if (data.data?.visitorteam.id === dnb?.lineup.team_id)
+      //    { 
+        //     return dnb 
+        //   } 
+        // })
+        // setDNBVisior(visitorTeamDnb)
+        
+        
   };
 
   useEffect(() => {

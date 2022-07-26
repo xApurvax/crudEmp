@@ -5,26 +5,26 @@ const ScoreDropDown = ({score,teamScore,teamCode,Batting,bowling,lineup,Extras,d
 
     const [dropDown, setDropDown] = useState(false);
 
-    const DidNotBat = donotbat?.map((dnb) => {
-        return(
-            dnb?.fullname
-    )}).join(", ")
+    // const DidNotBat = donotbat?.map((dnb) => {
+    //     return(
+    //         dnb?.fullname
+    // )}).join(", ")
     
-console.log(score,"all data")
+// console.log(score,"all data")
 
-        console.log("lineup",lineup.find((caption)=> caption?.lineup?.captain)?.id)
+        // console.log("lineup",lineup.find((caption)=> caption?.lineup?.captain)?.id)
   return (
     <div>
-        <section className='flex justify-between w-[672px] px-[18px] py-[15px] bg-[#fafafa] border-b-[1px] border-solid border-[#e6e6e6] '>
+        <section className='flex justify-between w-[672px] px-[18px] py-[10px] bg-[#fafafa] border-b-[1px] border-solid border-[#e6e6e6] '>
                 <div className='flex items-center text-[16px] text-[#141414] font-[600] leading-[1.25] tracking-[0.5px] '>
                     <p>{teamCode}</p>
                 </div>
                 <div className='flex items-center gap-[25px] text-[14px] text-[#141414] font-[600] tracking-[0.25px] '>
                     <p>{teamScore?.score}/{teamScore?.wickets}</p>
-                    <div onClick={() => setDropDown(!dropDown)}><IoIosArrowDropdownCircle className={` ${dropDown ?  "rotate-180 duration-200 fill-[#ff5000] ": "rotate-0 duration-200" }`} color="#ffb999" size={30} /></div>
+                    <div onClick={() => setDropDown(!dropDown)}><IoIosArrowDropdownCircle className={` ${dropDown ?  "rotate-180 fill-[#ff5000] ": "rotate-0 " } transition-all ease-in-out duration-500`} color="#ffb999" size={30} /></div>
                 </div>
         </section>
-        <section className={` ${dropDown ? " block transition-[100%] ease duration-300": "hidden transition-[0%] ease duration-300" }`}>
+        <section className={` ${dropDown ? " max-h-[1560px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 `}>
                 <div className='flex justify-between items-center p-[10px] bg-[#fafafa] rounded-[10px] mt-[20px] mx-[10px] '>
                     <div className='text-[12px] uppercase leading-[1.57] tracking-[1px] text-[#787878] '>
                         <p>Batsmen</p>
@@ -46,7 +46,7 @@ console.log(score,"all data")
                 <div className='flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5] '>
                     <div className='flex flex-col'>
                         <div className='text-[14px] text-[#0081ff] tracking-[0.25px] '><p>{bat?.batsman?.fullname} {score && score?.lineup.map((luData)=>{ 
-                            return  luData.id===bat.player_id &&  luData.lineup.captain && "(c)" })}
+                                return  luData.id===bat.player_id &&  luData.lineup.captain && "(c)" })}
                             {bat?.batsman?.position?.name === "Wicketkeeper" ? ("(wk)") : bat?.batsman?.position?.name === "Captain" ? "(c)":"" }</p></div>
                         <div className='text-[11px] text-[#787878] leading-[2.27] tracking-[0.3px] '><p>{bat?.catch_stump_player_id ? (`c ${bat?.catchstump?.firstname.substring(0,1)} ${bat?.catchstump?.lastname}`) : " " } {bat?.bowling_player_id ? (`b ${bat?.bowler?.firstname.substring(0,1)} ${bat?.bowler?.lastname}`) : "Not Out" } </p></div>
                     </div>
@@ -77,14 +77,17 @@ console.log(score,"all data")
                 </div>
                 </div>
         </section>
-        <section className='flex  w-[672px] px-[18px] py-[15px]  border-b-[1px] border-solid border-[#e6e6e6] '>
-                <div className='flex items-center whitespace-nowrap mr-[15px] text-[14px] text-[#141414] font-[600] tracking-[0.25px] '>
+        <section className='flex justify-between  w-[672px] px-[18px] py-[15px]  border-b-[1px] border-solid border-[#e6e6e6] '>
+                <div className='flex items-center whitespace-nowrap mr-[35px] text-[14px] text-[#141414] font-[600] tracking-[0.25px] '>
                     <p>Did Not Bat</p>
                 </div>
                 {/* {donotbat?.map((dnb) => {
                     return( */}
                 <div className='flex items-center text-[12px] text-[#787878] leading-[1.27] tracking-[0.3px] text-[#787878] '>
-                    <p>{DidNotBat}</p>
+                    <p>{donotbat?.map((dnb) => {
+                    return( 
+                            dnb?.fullname
+                        )}).join(", ") }</p>
                 </div>
                 {/* )})} */}
         </section>
@@ -155,7 +158,7 @@ console.log(score,"all data")
                         <div className='flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5] '>
                             <div className='flex flex-col'>
                                 <div className='text-[14px] text-[#0081ff] tracking-[0.25px] '><p>{bat?.batsman?.fullname} {score && score?.lineup.map((luData)=>{ 
-                            return  luData.id===bat.player_id &&  luData.lineup.captain && "(c)" })}
+                                    return  luData.id===bat.player_id &&  luData.lineup.captain && "(c)" })}
                                  {bat?.batsman?.position?.name === "Wicketkeeper" ? ("(wk)") : lineup?.lineup?.captain == "true" ? "(c)":"" }</p></div>    
                             </div>
                             <table className='flex'>

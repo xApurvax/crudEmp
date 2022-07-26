@@ -38,7 +38,7 @@ const SamplePrevArrow =(props) => {
 
 const Sliderbar = ({cardDataApi}) => {
   
-  console.log(cardDataApi,"cardsss");
+  // console.log(cardDataApi,"cardsss");
   // console.log(matchStatusData,"MatchStatus");
 
   const settings = {
