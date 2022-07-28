@@ -119,7 +119,7 @@ const ScoreDropDown = ({score,teamScore,teamCode,Batting,bowling,lineup,Extras,d
                         </tbody>
                     </table>
                 </div>
-                {bowling?.map((ball) => {
+                {bowling.length> 0 && bowling?.map((ball) => {
                     return(
                 <div className='flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5] '>
                     <div className='flex flex-col'>
@@ -151,7 +151,8 @@ const ScoreDropDown = ({score,teamScore,teamCode,Batting,bowling,lineup,Extras,d
                         </tbody>
                     </table>
                 </div>
-                {Batting?.sort((a,b) => (a.fow_balls > b.fow_balls)? 1 : -1).map((bat) => {
+                {/* {console.log("Batting", Batting && Batting?.sort((a, b) => a.fow_balls.localeCompare(b.fow_balls)))} */}
+                {Batting && Batting.length> 0 && Batting?.slice().sort((a,b) => (a.fow_balls > b.fow_balls)? 1 : -1).map((bat) => {
                     return(
                         <div>      
                         { bat?.fow_balls > 0 && bat?.bowler?.fullname.length > 0 && 

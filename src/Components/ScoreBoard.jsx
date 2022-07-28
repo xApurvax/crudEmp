@@ -124,8 +124,8 @@ const ScoreBoard = ({score,localScore,visitorScore,localTeamBatting,visitorTeamB
                 </div>
               </section>
             </section> */} 
-            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting} bowling={localTeamBowling} Extras={loExtras} donotbat={dNBLocal} lineup={lineUpLocal} />
-            <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting} bowling={visitorTeamBowling} Extras={viExtras} donotbat={dNBVisitor} lineup={lineUpVisitor} />
+            <ScoreDropDown score={score} teamScore={localScore} teamCode={score?.localteam?.code} Batting={localTeamBatting.length>0 && localTeamBatting} bowling={localTeamBowling} Extras={loExtras} donotbat={dNBLocal} lineup={lineUpLocal} />
+            <ScoreDropDown score={score} teamScore={visitorScore} teamCode={score?.visitorteam?.code} Batting={visitorTeamBatting.length>0 && visitorTeamBatting} bowling={visitorTeamBowling} Extras={viExtras} donotbat={dNBVisitor} lineup={lineUpVisitor} />
         </section>
       </section>
     </div>) :
