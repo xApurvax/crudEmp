@@ -3,9 +3,7 @@ import { useSelector , useDispatch } from 'react-redux/es/exports'
 import Navbar from '../Layouts/Navbar'
 import Footer from '../Layouts/Footer'
 import ScoreBoard from '../Components/ScoreBoard'
-import axios from "axios";
 import {useParams } from 'react-router-dom'
-import { base_url ,api_token,api_token1,end_url } from './Config'
 import { fetchscore } from '../store/scoreBoardSlice'
 
 const ScorePage = () => {
