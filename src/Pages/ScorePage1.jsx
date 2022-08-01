@@ -4,7 +4,7 @@ import Navbar from '../Layouts/Navbar'
 import Footer from '../Layouts/Footer'
 import ScoreBoard from '../Components/ScoreBoard'
 import {useParams } from 'react-router-dom'
-import { fetchscore } from '../store/scoreBoardSlice'
+import { fetchscore, cleanData } from '../store/scoreBoardSlice'
 
 const ScorePage = () => {
 
@@ -14,6 +14,9 @@ const ScorePage = () => {
 
   useEffect(() => {
     dispatch(fetchscore(id))
+    return () => {
+      dispatch(cleanData())
+    };
   }, [])
 
   

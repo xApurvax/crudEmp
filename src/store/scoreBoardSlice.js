@@ -32,6 +32,21 @@ const scoreBoardPage = createSlice({
     name : "matchApi",
     initialState,
     reducers : {
+      cleanData : (state) => {
+        state.scoreApi = null;
+        state.localScore = []; 
+        state.visitorScore = [];
+        state.localTeamBatting = [];
+        state.visitorTeamBatting = [];
+        state.localTeamBowling = [];
+        state.visitorTeamBowling = [];
+        state.viExtras = [];
+        state.loExtras = [];
+        state.lineUpLocal = [];
+        state.lineUpVisitor = [];
+        state.dNBLocal = [];
+        state.dNBVisitor = [];
+      },
     },
     extraReducers(builder)  {
         builder.addCase(fetchscore.pending, (state,action) => {
@@ -127,4 +142,5 @@ const scoreBoardPage = createSlice({
     }
 })
 
+export const {cleanData} = scoreBoardPage.actions
 export default scoreBoardPage.reducer

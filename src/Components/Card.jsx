@@ -117,7 +117,7 @@ const Card = ({matches}) => {
           <p>More Cricket</p>
           <div>
             <IoIosArrowDroprightCircle
-              className="mx-[4px] "
+              className="mx-[4px]"
               color="#ff9666"
               size={12}
             />
