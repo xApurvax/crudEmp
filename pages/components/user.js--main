@@ -1,0 +1,10 @@
+
+const user = ({user}) => {
+  return (
+    <div>
+        <div>{user.title}</div>
+    </div>
+  )
+}
+
+export default user
