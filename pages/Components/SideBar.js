@@ -3,14 +3,15 @@ import { FiSend } from 'react-icons/fi';
 import { FaAngleDown } from 'react-icons/fa';
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import DropDown from './DropDown';
+import DetailsDropDown from './DetailsDropDown';
 import MultipleSelectDropDown from './MultipleSelectDropDown';
 import ModelShowMore from './ModelShowMore';
 import DualRangeSel from './DualRangeSel';
 
 const SideBar = () => {
   
-
+  const [dRange ,setDRange] = useState([0, 1000000]);
+  const [yRange ,setYRange] = useState([1990,2021]);
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
@@ -37,13 +38,13 @@ const SideBar = () => {
 
   return (
     <div>
-        <section className="bg-[#FFFFFF] w-[312px] h-[1612px] p-[16px] rounded-[10px] border-solid border-[1px] border-[#F2F2F5] ">
+        <section className="bg-[#FFFFFF] w-[312px] rounded-[10px] border-solid border-[1px] border-[#F2F2F5] ">
           <section className="">
-              <section className="flex flex-col gap-[8px] ">
+              <section className="flex flex-col gap-[8px] p-[16px]  ">
                 <p className=" font-[700] text-[16px] leading-[24px] text-[#28293D] uppercase">Filter by</p>
                 <span className="bg-gradient-to-r from-[#FF8800] to-[#E63535] min-h-[5px] max-w-[26px] rounded-xl "></span>
               </section>
-              <section className="flex flex-col gap-[14px] mt-[24px] ">
+              <section className="flex flex-col gap-[14px] mt-[24px] p-[16px] ">
                 <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">car type</p>
                 <div className="flex gap-[26px] ">
                   <div className="flex gap-[10px]">
@@ -56,8 +57,8 @@ const SideBar = () => {
                   </div>
                 </div>
               </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mt-[18px] "></section>
-              <section className="flex flex-col gap-[20px] mt-[16px] ">
+              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px] "></section>
+              <section className="flex flex-col gap-[20px] mt-[16px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">your zip</p>
                   <div className="flex items-center justify-between border-[1px] border-solid border-[#E4E4EB] rounded-[10px] px-[16px] py-[14px] ">
@@ -78,7 +79,7 @@ const SideBar = () => {
                     </div>
                 </div>
               </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mt-[16px] "></section>
+              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></section>
               {/* <section className=' flex flex-col pt-[16px] '>
                     <div className='flex items-center justify-between'>
                         <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Make</p>  
@@ -106,11 +107,11 @@ const SideBar = () => {
                       </div>
                   </div>
               </section> */}
-              <section className='mt-[10px]'>
+              <section className='mt-[10px] p-[16px]'>
                 {/* <DropDown /> */}
                 <MultipleSelectDropDown />
               </section>
-              <section className="flex flex-col gap-[20px] mt-[16px] ">
+              <section className="flex flex-col gap-[20px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">model</p>
                 </div>
@@ -142,8 +143,8 @@ const SideBar = () => {
                 </div> */}
                 <ModelShowMore />
               </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mt-[16px] mb-[16px] "></section>
-              <section className="flex flex-col gap-[20px]">
+              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
+              <section className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Body type</p>
                 </div>
@@ -158,19 +159,47 @@ const SideBar = () => {
                   </div>
                 </div>
               </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mt-[18px] mb-[16px] "></section>
-              <section className="flex flex-col gap-[20px]">
+              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
+              <section className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex justify-between items-center">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Price</p>
-                  <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> $0 - $1,000</p>
+                  <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> ${dRange[0]} - ${dRange[dRange.length-1]}</p>
                 </div>
                 <div>
-                  <DualRangeSel />
+                  <DualRangeSel setRange={setDRange} defaultValue={[0,1000000]} min={0} max={100000} step={1000} />
                 </div>
                 <div className="flex justify-between">
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>$0</p>
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>$100,000</p>
                 </div>
+              </section>
+              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></section>
+              <section className="flex flex-col gap-[20px] p-[16px]">
+                <div className="flex justify-between items-center">
+                  <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Make Year</p>
+                  <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> {yRange[0]} - {yRange[yRange.length-1]}</p>
+                </div>
+                <div>
+                  <DualRangeSel setRange={setYRange} defaultValue={[1995,2000]} min={1990} max={2021} step={1} />
+                </div>
+                <div className="flex justify-between">
+                  <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>1990</p>
+                  <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>2021</p>
+                </div>
+              </section>
+              <section className=' flex flex-col'>
+                <section className=' '>
+                    <DetailsDropDown dropDownTitle="Style" />
+                </section>
+                <section className=' '>
+                    <DetailsDropDown dropDownTitle="Performance" />
+                </section>
+                <section className=' '>
+                    <DetailsDropDown dropDownTitle="Features" />
+                </section>
+                <section className=' '>
+                    <DetailsDropDown dropDownTitle="Ratings" />
+                </section>
               </section>
           </section>
         </section>

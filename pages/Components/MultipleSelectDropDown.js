@@ -20,27 +20,16 @@ export default function MultipleSelectDropDown () {
   const [selectedPersons, setSelectedPersons] = useState([]);
   const [dropDown, setDropDown] = useState(false);
 
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  const ref = useRef();
 
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-            setIsOpen(false);
-        }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!ref?.current?.contains(event.target)) {
+        setIsOpen(false);
       }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+  }, [ref]);
 
   function isSelected(value) {
     return selectedPersons.find((el) => el === value) ? true : false;
@@ -103,7 +92,7 @@ export default function MultipleSelectDropDown () {
                   leaveTo="opacity-0"
                   className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
                   onClick={() => setIsOpen(!isOpen)}
-                  ref={wrapperRef}
+                  ref={ref}
                 >
                   <Listbox.Options
                     static

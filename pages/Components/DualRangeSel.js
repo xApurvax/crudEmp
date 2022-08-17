@@ -1,22 +1,27 @@
-// import React from 'react';
+import React,{useState} from 'react';
 // import Slider from 'rc-slider';
 // import TooltipSlider from './TooltipSlider';
 import Slider from 'rc-slider';
-import  Range  from 'rc-slider';
+// import  Range  from 'rc-slider';
 import 'rc-slider/assets/index.css';
+// const { createSliderWithTooltip } = Slider;
+// const Range = createSliderWithTooltip(Slider.Range);
 
-const DualRangeSel = () => {
+const DualRangeSel = ({setRange,defaultValue ,min ,max ,step}) => {
+
+    const [multiRange, setMultiRange] = useState(defaultValue);
   return (
     <div>
-      {/* <TooltipSlider
+      {/* {multiRange[0]} - {multiRange[multiRange.length - 1]} */}
+      <Slider
+        color="orange"
+        inverted={false}
+        min={min} max={max} step={step}
         range
-        min={0}
-        max={20}
-        defaultValue={[3, 10]}
-        tipFormatter={(value) => `${value}!`}
-      /> */}
-      {/* <Slider /> */}
-      <Range min={0} max={1000} step={100}  tipFormatter={[100,400]}/>
+        allowCross={false}
+        onChange={(e) => {setMultiRange(e) ,setRange(e)}}
+        defaultValue={multiRange}
+      />
     </div>
   )
 }
