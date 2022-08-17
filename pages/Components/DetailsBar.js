@@ -4,30 +4,39 @@ import carimage from "../Images/carimage.svg"
 import { FiSend } from 'react-icons/fi';
 import { IoMdStar } from 'react-icons/io';
 
-const DetailsBar = () => {
+const DetailsBar = ({car}) => {
+    // console.log(car,"car data")
+
   return (
     <div>
         <section className="bg-[#FFFFFF]  flex flex-col gap-[0px] overflow-hidden rounded-[10px] border-solid border-[1px] border-[#F2F2F5]  shadow-[0px_2px_8px_rgba(40,41,61,0.04),0px_16px_24px_rgba(96,97,112,0.16)]">
             <section className="flex justify-between  ">
                 <section className="flex">
-                    <Image src={carimage} alt="nav logo" className="" />
+                    <Image src={car?.photos[0]} alt="nav logo" height={254} width={360} />
                 </section>
                 <section className="flex flex-col p-[24px] w-[70%] justify-between">
                     <section className="flex flex-col gap-[4px] ">
                         <div className=" font-[700] text-[20px] text-[#28293D] leading-[32px]">
-                            <p>2022 Ford F-250 Super Duty</p>
+                            <p>{car.year} {car.make} {car.model}</p>
                         </div>
                         <div className=" font-[400] text-[12px] text-[#8F90A6] leading-[16px]">
-                            <p>Covert Buick GMC • 3,518 Mileage • Black</p>
+                            <p>{car.dealership} • {car.milage} Mileage • {car.exterior_color}</p>
                         </div>
                         <div className=" font-[400] text-[12px] text-[#8F90A6] leading-[16px]">
-                            <p>Austin, Texas</p>
+                            <p>{car.city}, {car.state}</p>
                         </div>
                     </section>
                     <section className="flex justify-between">
                         <div className="flex gap-[8px] items-center">
                             <div className="font-[600] text-[28px] text-[#28293D] leading-[38px]">
-                                <p>$87,698</p>
+                                {/* <p>${car.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,").split(".00")}</p> */}
+                                {/* <p>{new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits : 0,
+                                    }).format(car.price)}</p> */}
+                                <p>${car.price.toLocaleString('en-US')}</p>
                             </div>
                             <div className="flex items-center italic font-[400] text-[12px]  text-[#FFFFFF] leading-[16px] ">
                                 <p className="bg-[#8F90A6] px-[6.5px]  rounded-full">i</p>
@@ -49,10 +58,10 @@ const DetailsBar = () => {
                     </div>
                     <div className="flex gap-[16px] font-[400] text-[14px] leading-[24px] text-[#28293D] "> 
                         <div>
-                            <p>• 100% credit approval guaranteed</p>
+                            <p>• {car.car_offers.split(",")[0].replace(/[\[\]'"]/g, '')}</p>
                         </div>  
                         <div>
-                            <p>• Complimentary 101pt safety check</p>
+                            <p>• {car.car_offers.split(",")[1].replace(/[\[\]'"]/g, '')}</p>
                         </div>
                     </div>
             </section>

@@ -2,23 +2,14 @@ import React, { useState,useRef,useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from 'react-icons/fa';
 
-const people = [
-  "Wade Cooper",
-  "Arlene Mccoy",
-  "Devon Webb",
-  "Tom Cook",
-  "Tanya Fox",
-  "Hellen Schmidt",
-  "Caroline Schultz",
-  "Mason Heaney",
-  "Claudie Smitham",
-  "Emil Schaefer"
-];
 
-export default function MultipleSelectDropDown () {
+
+export default function MultipleSelectDropDown ({carMake}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPersons, setSelectedPersons] = useState([]);
   const [dropDown, setDropDown] = useState(false);
+
+  const people = Object.keys(carMake)
 
   const ref = useRef();
 

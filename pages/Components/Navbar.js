@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div>
         <navbar className="flex justify-between items-center px-[64px] py-[14px] border-b-[1px] border-solid border-[#E4E4EB] ">
-            <section className="flex gap-[36px] uppercase font-[600] text-[12px] leading-[20px]  ">
+            <section className="flex gap-[36px] uppercase font-[600] text-[12px] leading-[20px] text-[#28293D]  ">
                 <div><Link href="/"><a className="hover:text-[#FF6B00]">How It Works</a></Link></div>
                 <div><Link href="/"><a className="hover:text-[#FF6B00]">Why Us</a></Link></div>
                 <div><Link href="/"><a className="hover:text-[#FF6B00]">Contact Us</a></Link></div>

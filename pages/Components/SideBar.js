@@ -7,34 +7,14 @@ import DetailsDropDown from './DetailsDropDown';
 import MultipleSelectDropDown from './MultipleSelectDropDown';
 import ModelShowMore from './ModelShowMore';
 import DualRangeSel from './DualRangeSel';
+import SingleRangeSlider from './SingleRangeSlider';
 
-const SideBar = () => {
+
+const SideBar = ({carMake}) => {
   
   const [dRange ,setDRange] = useState([0, 1000000]);
-  const [yRange ,setYRange] = useState([1990,2021]);
-
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
-  const [dropDown, setDropDown] = useState(false);
-
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setDropDown(false)
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
+  const [yRange ,setYRange] = useState([2011,2021]);
+  const [sRange ,setSRange] = useState([100]);
 
   return (
     <div>
@@ -68,10 +48,11 @@ const SideBar = () => {
                 <div className='flex flex-col gap-[10px]'>
                     <div className='flex items-center justify-between'>
                         <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">search within</p>  
-                        <p className=" font-[600] text-[16px] leading-[24px] text-[#28293D] ">100 miles</p>
+                        <p className=" font-[600] text-[16px] leading-[24px] text-[#28293D] ">{sRange} miles</p>
                     </div>
                     <div className='flex flex-col gap-[10px] '>
-                      <input type="range" min="20" max="500" steps="10" className="slider w-full max-h-[6px]" id="myRange" />
+                      {/* <input type="range" min="20" max="500" steps="10" className="slider w-full max-h-[6px]" id="myRange" /> */}
+                      <SingleRangeSlider setRange={setSRange} min={20} max={500} step={10} defaultValue={100} />
                       <div className='flex justify-between  font-[500] text-[12px] leading-[16px] text-[#28293D]'>
                       <div className="value left">20 miles</div>
                       <div className="value right">500 miles</div>
@@ -109,7 +90,7 @@ const SideBar = () => {
               </section> */}
               <section className='mt-[10px] p-[16px]'>
                 {/* <DropDown /> */}
-                <MultipleSelectDropDown />
+                <MultipleSelectDropDown carMake={carMake} />
               </section>
               <section className="flex flex-col gap-[20px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
@@ -180,7 +161,7 @@ const SideBar = () => {
                   <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> {yRange[0]} - {yRange[yRange.length-1]}</p>
                 </div>
                 <div>
-                  <DualRangeSel setRange={setYRange} defaultValue={[1995,2000]} min={1990} max={2021} step={1} />
+                  <DualRangeSel setRange={setYRange} defaultValue={[2011,2021]} min={1990} max={2021} step={1} />
                 </div>
                 <div className="flex justify-between">
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>1990</p>
@@ -208,3 +189,5 @@ const SideBar = () => {
 }
 
 export default SideBar
+
+
