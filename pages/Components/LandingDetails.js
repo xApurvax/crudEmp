@@ -1,9 +1,10 @@
 import DetailsBar from "./DetailsBar"
+import Pagination from "./Pagination"
 import SideBar from "./SideBar"
 
-const LandingDetails = ({count,allCars,carMake}) => {
+const LandingDetails = ({count,allCars,carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans,carDrive,carFuel,carFeature}) => {
 
-    console.log(allCars)
+    console.log(carModel,"Models")
   return (
     <div>
         <section className="bg-[#FAFAFC] px-[60px] py-[36px]">
@@ -17,7 +18,7 @@ const LandingDetails = ({count,allCars,carMake}) => {
             </section>
             <section className="flex mt-[36px] gap-[24px] ">
                 <section className="w-[30%]">
-                    <SideBar carMake={carMake} />
+                    <SideBar carMake={carMake} carModel={carModel} carType={carType} carStyle={carStyle} carEcolur={carEcolur} carIcolur={carIcolur} carTrans={carTrans} carDrive={carDrive} carFuel={carFuel} carFeature={carFeature} />
                 </section>
                 <section className="w-[100%] flex flex-col gap-[24px]">
                 {allCars && allCars.map((cars) => {
@@ -28,6 +29,9 @@ const LandingDetails = ({count,allCars,carMake}) => {
                     )
                 })
                 }
+                <section className="p-[50px]">
+                    {/* <Pagination itemsPerPage={4} /> */}
+                </section>
                 </section>
             </section>
         </section>

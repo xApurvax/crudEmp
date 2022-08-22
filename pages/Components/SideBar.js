@@ -10,12 +10,13 @@ import DualRangeSel from './DualRangeSel';
 import SingleRangeSlider from './SingleRangeSlider';
 
 
-const SideBar = ({carMake}) => {
+const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans,carDrive,carFuel,carFeature}) => {
   
   const [dRange ,setDRange] = useState([0, 1000000]);
   const [yRange ,setYRange] = useState([2011,2021]);
   const [sRange ,setSRange] = useState([100]);
 
+  // console.log(Object.entries(carFeature)[3][0],"Models")
   return (
     <div>
         <section className="bg-[#FFFFFF] w-[312px] rounded-[10px] border-solid border-[1px] border-[#F2F2F5] ">
@@ -24,7 +25,7 @@ const SideBar = ({carMake}) => {
                 <p className=" font-[700] text-[16px] leading-[24px] text-[#28293D] uppercase">Filter by</p>
                 <span className="bg-gradient-to-r from-[#FF8800] to-[#E63535] min-h-[5px] max-w-[26px] rounded-xl "></span>
               </section>
-              <section className="flex flex-col gap-[14px] mt-[24px] p-[16px] ">
+              <section className="flex flex-col gap-[14px] p-[16px] ">
                 <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">car type</p>
                 <div className="flex gap-[26px] ">
                   <div className="flex gap-[10px]">
@@ -122,14 +123,22 @@ const SideBar = ({carMake}) => {
                     <label className="font-[500] text-[14px] leading-[20px] text-[#28293D]">2500</label>
                   </div>
                 </div> */}
-                <ModelShowMore />
+                {/* {carModel && Object.keys(carModel).map((models) => {
+                  return (
+                        <>
+                          <ModelShowMore model={models} />
+                        </>
+                        )
+                })
+                } */}
+                <ModelShowMore carModel={carModel} />
               </section>
               <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
               <section className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Body type</p>
                 </div>
-                <div className="flex flex-col gap-[26px] ">
+                {/* <div className="flex flex-col gap-[26px] ">
                   <div className="flex gap-[10px]">
                     <input type="checkbox" className="bg-[#FFFFFF] h-[20px] w-[20px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px] " />
                     <label className="font-[500] text-[14px] leading-[20px] text-[#28293D] ">Sedan (12)</label>
@@ -138,7 +147,8 @@ const SideBar = ({carMake}) => {
                     <input type="checkbox" className="bg-[#FFFFFF] h-[20px] w-[20px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
                     <label className="font-[500] text-[14px] leading-[20px] text-[#28293D]">SUV (32)</label>
                   </div>
-                </div>
+                </div> */}
+                <ModelShowMore carModel={carType} />
               </section>
               <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
               <section className="flex flex-col gap-[20px] p-[16px]">
@@ -168,15 +178,15 @@ const SideBar = ({carMake}) => {
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>2021</p>
                 </div>
               </section>
-              <section className=' flex flex-col'>
+              <section className=' flex flex-col py-[10px] '>
                 <section className=' '>
-                    <DetailsDropDown dropDownTitle="Style" />
+                    <DetailsDropDown dropDownTitle="Style" title1="BODY STYLE" data1={carStyle} title2="EXTERIOR COLOR"  data2={carEcolur} title3="INTERIOR COLOR" data3={carIcolur} />
+                </section>                                               
+                <section className=' '>
+                    <DetailsDropDown dropDownTitle="Performance" title1="TRANSMISSION" data1={carTrans} title2="DRIVE TRAIN"  data2={carDrive} title3="FUEL TYPE" data3={carFuel} />
                 </section>
                 <section className=' '>
-                    <DetailsDropDown dropDownTitle="Performance" />
-                </section>
-                <section className=' '>
-                    <DetailsDropDown dropDownTitle="Features" />
+                    <DetailsDropDown dropDownTitle="Features" title1={Object.entries(carFeature)[0][0]} data1={Object.entries(carFeature)[0][1]} title2={Object.entries(carFeature)[1][0]}  data2={Object.entries(carFeature)[1][1]} title3={Object.entries(carFeature)[2][0]} data3={Object.entries(carFeature)[2][1]} title4={Object.entries(carFeature)[3][0]} data4={Object.entries(carFeature)[3][1]} title5={Object.entries(carFeature)[4][0]}  data5={Object.entries(carFeature)[4][1]}  />
                 </section>
                 <section className=' '>
                     <DetailsDropDown dropDownTitle="Ratings" />
