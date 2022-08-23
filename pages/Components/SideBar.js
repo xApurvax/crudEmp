@@ -19,13 +19,13 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
   // console.log(Object.entries(carFeature)[3][0],"Models")
   return (
     <div>
-        <section className="bg-[#FFFFFF] w-[312px] rounded-[10px] border-solid border-[1px] border-[#F2F2F5] ">
-          <section className="">
-              <section className="flex flex-col gap-[8px] p-[16px]  ">
+        <div className="bg-[#FFFFFF] w-[312px] rounded-[10px] border-solid border-[1px] border-[#F2F2F5] ">
+          <div className="">
+              <div className="flex flex-col gap-[8px] p-[16px]  ">
                 <p className=" font-[700] text-[16px] leading-[24px] text-[#28293D] uppercase">Filter by</p>
                 <span className="bg-gradient-to-r from-[#FF8800] to-[#E63535] min-h-[5px] max-w-[26px] rounded-xl "></span>
-              </section>
-              <section className="flex flex-col gap-[14px] p-[16px] ">
+              </div>
+              <div className="flex flex-col gap-[14px] p-[16px] ">
                 <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">car type</p>
                 <div className="flex gap-[26px] ">
                   <div className="flex gap-[10px]">
@@ -37,9 +37,9 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                     <label className="font-[500] text-[14px] leading-[20px] text-[#28293D]">Used</label>
                   </div>
                 </div>
-              </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px] "></section>
-              <section className="flex flex-col gap-[20px] mt-[16px] p-[16px] ">
+              </div>
+              <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px] "></div>
+              <div className="flex flex-col gap-[20px] mt-[16px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">your zip</p>
                   <div className="flex items-center justify-between border-[1px] border-solid border-[#E4E4EB] rounded-[10px] px-[16px] py-[14px] ">
@@ -60,9 +60,9 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                       </div>
                     </div>
                 </div>
-              </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></section>
-              {/* <section className=' flex flex-col pt-[16px] '>
+              </div>
+              <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></div>
+              {/* <div className=' flex flex-col pt-[16px] '>
                     <div className='flex items-center justify-between'>
                         <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Make</p>  
                     </div>
@@ -88,12 +88,12 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                         <a href="#" className='text-[#28293D] px-[10px] py-[6px] block no-underline hover:bg-[#f1f1f1] '>Link 3</a>
                       </div>
                   </div>
-              </section> */}
-              <section className='mt-[10px] p-[16px]'>
+              </div> */}
+              <div className='mt-[10px] p-[16px]'>
                 {/* <DropDown /> */}
                 <MultipleSelectDropDown carMake={carMake} />
-              </section>
-              <section className="flex flex-col gap-[20px] p-[16px] ">
+              </div>
+              <div className="flex flex-col gap-[20px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">model</p>
                 </div>
@@ -132,9 +132,9 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                 })
                 } */}
                 <ModelShowMore carModel={carModel} />
-              </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
-              <section className="flex flex-col gap-[20px] p-[16px]">
+              </div>
+              <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></div>
+              <div className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Body type</p>
                 </div>
@@ -149,9 +149,9 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                   </div>
                 </div> */}
                 <ModelShowMore carModel={carType} />
-              </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></section>
-              <section className="flex flex-col gap-[20px] p-[16px]">
+              </div>
+              <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></div>
+              <div className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex justify-between items-center">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Price</p>
                   <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> ${dRange[0]} - ${dRange[dRange.length-1]}</p>
@@ -163,9 +163,9 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>$0</p>
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>$100,000</p>
                 </div>
-              </section>
-              <section className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></section>
-              <section className="flex flex-col gap-[20px] p-[16px]">
+              </div>
+              <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></div>
+              <div className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex justify-between items-center">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Make Year</p>
                   <p className='font-[600] text-[16px] leading-[24px] text-[#28293D]'> {yRange[0]} - {yRange[yRange.length-1]}</p>
@@ -177,23 +177,23 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>1990</p>
                   <p className='font-[500] text-[12px] leading-[16px] text-[#28293D]'>2021</p>
                 </div>
-              </section>
-              <section className=' flex flex-col py-[10px] '>
-                <section className=' '>
+              </div>
+              <div className=' flex flex-col py-[10px] '>
+                <div className=' '>
                     <DetailsDropDown dropDownTitle="Style" title1="BODY STYLE" data1={carStyle} title2="EXTERIOR COLOR"  data2={carEcolur} title3="INTERIOR COLOR" data3={carIcolur} />
-                </section>                                               
-                <section className=' '>
+                </div>                                               
+                <div className=' '>
                     <DetailsDropDown dropDownTitle="Performance" title1="TRANSMISSION" data1={carTrans} title2="DRIVE TRAIN"  data2={carDrive} title3="FUEL TYPE" data3={carFuel} />
-                </section>
-                <section className=' '>
+                </div>
+                <div className=' '>
                     <DetailsDropDown dropDownTitle="Features" title1={Object.entries(carFeature)[0][0]} data1={Object.entries(carFeature)[0][1]} title2={Object.entries(carFeature)[1][0]}  data2={Object.entries(carFeature)[1][1]} title3={Object.entries(carFeature)[2][0]} data3={Object.entries(carFeature)[2][1]} title4={Object.entries(carFeature)[3][0]} data4={Object.entries(carFeature)[3][1]} title5={Object.entries(carFeature)[4][0]}  data5={Object.entries(carFeature)[4][1]}  />
-                </section>
-                <section className=' '>
+                </div>
+                <div className=' '>
                     <DetailsDropDown dropDownTitle="Ratings" />
-                </section>
-              </section>
-          </section>
-        </section>
+                </div>
+              </div>
+          </div>
+        </div>
     </div>
   )
 }

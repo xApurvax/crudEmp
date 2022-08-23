@@ -1,26 +1,39 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useSelector , useDispatch } from 'react-redux'
+import { fetchAllCarData } from './Redux-store/carsDataSlice';
 import styles from '../styles/Home.module.css'
 import Footer from './Components/Footer'
 import LandingDetails from './Components/LandingDetails'
 import Navbar from './Components/Navbar'
-import SingleDetail from './Components/SingleDetail'
 
 export default function Home({count,allCars,carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans,carDrive,carFuel,carFeature}) {
+
+  const dispatch = useDispatch(); 
+  const {status } = useSelector((state) => state.carsDataSlice);
+
+  // console.log(counts,"count")
+
+  useEffect(() => {
+    status=="IDLE" &&
+        dispatch(fetchAllCarData());     
+  }, [])
+
   return (
-    <div className={`flex justify-center items-center  ${styles.container}`}>
-    <section className='w-[1520px]'>
+    
+    <div className={`flex justify-center items-center ${styles.container}`}>
+    <div className='w-[1520px]'>
       <Navbar /> 
-      {/* <LandingDetails count={count} allCars={allCars} carMake={carMake} carModel={carModel} carType={carType} carStyle={carStyle} carEcolur={carEcolur} carIcolur={carIcolur} carTrans={carTrans} carDrive={carDrive} carFuel={carFuel} carFeature={carFeature} /> */}
-      <SingleDetail />
+      <LandingDetails count={count} allCars={allCars} carMake={carMake} carModel={carModel} carType={carType} carStyle={carStyle} carEcolur={carEcolur} carIcolur={carIcolur} carTrans={carTrans} carDrive={carDrive} carFuel={carFuel} carFeature={carFeature} />
       <Footer />
-    </section>
+    </div>
     </div>
   )
 }
 
 
 // export const getStaticProps = async () => {
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const response = await axios.get("https://autodigg.com/ad-api/cars/list?car_type=Used+car%2CNew+car%2CCertified+pre-owned&page=1&radius=100&year=2011%2C2021&return=count")
   const count = await response.data
 

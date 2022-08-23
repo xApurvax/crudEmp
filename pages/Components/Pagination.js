@@ -44,7 +44,7 @@ const Pagination = ({ itemsPerPage }) => {
 
   return (
     <div>
-      <Items currentItems={currentItems} />
+      {/* <Items currentItems={currentItems} /> */}
       <ReactPaginate
         breakLabel="..."
         nextLabel=">"
@@ -53,6 +53,17 @@ const Pagination = ({ itemsPerPage }) => {
         pageCount={pageCount}
         previousLabel="<"
         renderOnZeroPageCount={null}
+        containerClassName={"flex py-[64px] justify-center  gap-x-[27px]"}
+        pageClassName={"flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"}
+        pageLinkClassName= {"font-[500] text-[14px] text-[#555770] flex items-center justify-center h-full w-full "}
+        previousClassName={"bg-[#8F90A6] hover:bg-blue flex items-center justify-center w-[36px]  rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"}
+        previousLinkClassName={"flex items-center justify-center h-full w-full"}
+        nextClassName={"bg-black flex items-center justify-center w-[36px]  rounded-[6px] h-[36px] border-[1px] border-solid text-[white] border-[#E4E4EB]"}
+        nextLinkClassName={"flex items-center justify-center h-full w-full"}
+        breakClassName={"flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"}
+        activeLinkClassName	={"text-blue"}
+        activeClassName="border-[#FF8800] border-[2px] bg-[#FFFFFF] text-[#FF8800]"
+
       />
     </div>
   )
