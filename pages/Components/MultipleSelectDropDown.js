@@ -1,17 +1,18 @@
 import React, { useState,useRef,useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from 'react-icons/fa';
-
-
+import { useSelector , useDispatch } from 'react-redux'
+import {setCarByMake,setCarByModel,setCarByBody,pageValue,fetchPage} from "../Redux-store/homePageSlice"
 
 export default function MultipleSelectDropDown ({carMake}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPersons, setSelectedPersons] = useState([]);
   const [dropDown, setDropDown] = useState(false);
 
-  const people = Object.keys(carMake)
+  const make = Object.keys(carMake)
 
   const ref = useRef();
+  const dispatch = useDispatch();
+  const {carByMake} = useSelector((state) => state.homePageSlice)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -23,16 +24,20 @@ export default function MultipleSelectDropDown ({carMake}) {
   }, [ref]);
 
   function isSelected(value) {
-    return selectedPersons.find((el) => el === value) ? true : false;
+    return carByMake.find((el) => el === value) ? true : false;
   }
 
   function handleSelect(value) {
     if (!isSelected(value)) {
-      const selectedPersonsUpdated = [
-        ...selectedPersons,
-        people.find((el) => el === value)
+      const selectedChoiceUpdated = [
+        ...carByMake,
+        make.find((el) => el === value)
       ];
-      setSelectedPersons(selectedPersonsUpdated);
+      dispatch(setCarByMake(selectedChoiceUpdated));
+      dispatch(setCarByModel([]));
+      dispatch(setCarByBody([]));
+      dispatch(pageValue(1));
+      dispatch(fetchPage());
     } else {
       handleDeselect(value);
     }
@@ -40,8 +45,12 @@ export default function MultipleSelectDropDown ({carMake}) {
   }
 
   function handleDeselect(value) {
-    const selectedPersonsUpdated = selectedPersons.filter((el) => el !== value);
-    setSelectedPersons(selectedPersonsUpdated);
+    const selectedChoiceUpdated = carByMake.filter((el) => el !== value);
+    dispatch(setCarByModel([]));
+    dispatch(setCarByBody([]));
+    dispatch(setCarByMake(selectedChoiceUpdated));
+    dispatch(pageValue(1)); 
+    dispatch(fetchPage()); 
     setIsOpen(true);
   }
 
@@ -51,7 +60,7 @@ export default function MultipleSelectDropDown ({carMake}) {
         <Listbox
           as="div"
           className="space-y-1"
-          value={selectedPersons}
+          value={carByMake}
           onChange={(value) => handleSelect(value)}
           open={isOpen}
         >
@@ -65,9 +74,9 @@ export default function MultipleSelectDropDown ({carMake}) {
                     open={isOpen}
                   >
                     <span className="block truncate max-w-[200px] font-[600] text-[14px] leading-[20px] text-[#28293D] ">
-                      {selectedPersons.length < 1
+                      {carByMake.length < 1
                         ? `Select Make`
-                        : `${selectedPersons}`}
+                        : `${carByMake}`}
                     </span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                         <FaAngleDown size={16} className={` ${dropDown ?  "rotate-180 fill-[#ff5000] ": "rotate-0 " } transition-all ease-in-out duration-200`} />
@@ -89,7 +98,7 @@ export default function MultipleSelectDropDown ({carMake}) {
                     static
                     className="absolute top-[-60px] mt-1 max-h-60 w-full overflow-auto rounded-md bg-white  text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                   >
-                    {people.map((person) => {
+                    {make.map((person) => {
                       const selected = isSelected(person);
                       return (
                         <Listbox.Option key={person} value={person}>

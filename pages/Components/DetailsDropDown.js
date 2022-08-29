@@ -2,21 +2,11 @@ import React,{useState,useRef,useEffect} from 'react'
 import { IoIosArrowDown } from 'react-icons/io';
 import { AiFillStar } from 'react-icons/ai';
 import Checkbox from './Checkbox';
+import SmallCheckBox from './SmallCheckBox';
 
-const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,title2,title3,title4,title5}) => {
+const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,title2,title3,title4,title5,state1,state2,state3,state4,state5,setState1,setState2,setState3,setState4,setState5}) => {
     const [dropDown, setDropDown] = useState(false);
     const ref = useRef();
-
-    // console.log(title4)
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        // console.log('he',dropDown)
-        if (!ref?.current?.contains(event.target)) {
-           if(dropDown) setDropDown(false);
-        }
-      };
-      document.addEventListener("mousedown", handleClickOutside);
-    }, [dropDown, ref]);
 
   return (
     <div>
@@ -33,7 +23,8 @@ const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,tit
                   </div>
                   <div className={` ${dropDown ? " max-h-[1800px] ": "max-h-[0px] hidden " }  overflow-hidden transition-all ease-in-out duration-200 p-[16px] flex flex-col gap-[21px]  `}>
                   {(dropDownTitle == "Style" || dropDownTitle == "Performance" || dropDownTitle =="Features" ) ? (<div className='flex flex-col gap-[16px]'>
-                    <div className='flex flex-col gap-[12px] '>
+                {data1 && 
+                <div className='flex flex-col gap-[12px] '>
                         <div className=''>
                             <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">{title1}</p>
                         </div>
@@ -43,38 +34,34 @@ const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,tit
                             {/* here model is key and total is value  */}
                   return (
                         <>
-                             {/* <Checkbox model={model}  total={total} /> */}
-                                <div className="flex gap-[10px] items-center">
-                                    <input type="checkbox" className="bg-[#FFFFFF] h-[15px] w-[15px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
-                                    <label className="font-[500] text-[12px] leading-[20px] text-[#28293D]">{model} ({total.toString()})</label>
-                                </div>
+                          <SmallCheckBox model={model} total={total} allState={state1} setAllState={setState1} />
                         </>
                         )
                 })
                 }
                 </div>
                 </div>
-                    <div className='flex flex-col gap-[12px] '>
+                }
+                {data2 && 
+                <div className='flex flex-col gap-[12px] '>
                         <div className=''>
                             <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">{title2}</p>
                         </div>
                         <div className='flex flex-col gap-[12px]  '>
                 
-                  {data2 && Object.entries(data1).map(([model,total]) => { 
+                  {data2 && Object.entries(data2).map(([model,total]) => { 
                             {/* here model is key and total is value  */}
                   return (
                         <>
-                             {/* <Checkbox model={model}  total={total} /> */}
-                                <div className="flex gap-[10px] items-center">
-                                    <input type="checkbox" className="bg-[#FFFFFF] h-[15px] w-[15px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
-                                    <label className="font-[500] text-[12px] leading-[20px] text-[#28293D]">{model} ({total.toString()})</label>
-                                </div>
+                          <SmallCheckBox model={model} total={total} allState={state2} setAllState={setState2} />
                         </>
                         )
                 })
                 }
                 </div>
                 </div>
+                }
+                {data3 && 
                 <div className='flex flex-col gap-[12px] '>
                         <div className=''>
                             <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">{title3}</p>
@@ -85,17 +72,15 @@ const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,tit
                             {/* here model is key and total is value  */}
                   return (
                         <>
-                             {/* <Checkbox model={model}  total={total} /> */}
-                                <div className="flex gap-[10px] items-center">
-                                    <input type="checkbox" className="bg-[#FFFFFF] h-[15px] w-[15px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
-                                    <label className="font-[500] text-[12px] leading-[20px] text-[#28293D]">{model} ({total.toString()})</label>
-                                </div>
+                          <SmallCheckBox model={model} total={total} allState={state3} setAllState={setState3} />
                         </>
                         )
                 })
                 }
                 </div>
                 </div>
+                }
+                {data4 && 
                 <div className='flex flex-col gap-[12px] '>
                         <div className=''>
                             <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">{title4}</p>
@@ -106,17 +91,15 @@ const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,tit
                             {/* here model is key and total is value  */}
                   return (
                         <>
-                             {/* <Checkbox model={model}  total={total} /> */}
-                                <div className="flex gap-[10px] items-center">
-                                    <input type="checkbox" className="bg-[#FFFFFF] h-[15px] w-[15px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
-                                    <label className="font-[500] text-[12px] leading-[20px] text-[#28293D]">{model} ({total.toString()})</label>
-                                </div>
+                          <SmallCheckBox model={model} total={total} allState={state4} setAllState={setState4} />
                         </>
                         )
                 })
                 }
                 </div>
                 </div>
+                }
+                {data5 && 
                 <div className='flex flex-col gap-[12px] '>
                         <div className=''>
                             <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">{title5}</p>
@@ -127,17 +110,14 @@ const DetailsDropDown = ({dropDownTitle,data1,data2,data3,data4,data5,title1,tit
                             {/* here model is key and total is value  */}
                   return (
                         <>
-                             {/* <Checkbox model={model}  total={total} /> */}
-                                <div className="flex gap-[10px] items-center">
-                                    <input type="checkbox" className="bg-[#FFFFFF] h-[15px] w-[15px] accent-[#28293D] border-[2px] border-solid border-[#8F90A6] rounded-[4px]  " />
-                                    <label className="font-[500] text-[12px] leading-[20px] text-[#28293D]">{model} ({total.toString()})</label>
-                                </div>
+                          <SmallCheckBox model={model} total={total} allState={state5} setAllState={setState5} />
                         </>
                         )
                 })
                 }
                 </div>
                 </div>
+                }
                     </div>
                     ) : 
                     (<div>

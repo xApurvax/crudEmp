@@ -11,9 +11,9 @@ const CarDetail = ({carByVin}) => {
   // console.log(carByVin)
   return (
       <div className='max-w-[1520px] mx-auto'>
-        <Navbar />
+        {/* <Navbar /> */}
         <SingleDetail carByVin={carByVin[0]}  />
-        <Footer />
+        {/* <Footer /> */}
     </div>
   )
 }

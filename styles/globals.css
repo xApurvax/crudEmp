@@ -172,3 +172,16 @@ input[type="search"]::-webkit-search-cancel-button {
     -webkit-box-orient: vertical;
     text-overflow : ellipsis;
 } */
+
+.prev_btn ,.nxt_btn{
+  background: #28293D;
+  color: #FFFFFF;;
+}
+.prev_btn.disabled{
+  background: #E4E4EB;
+  color: #8F90A6;
+}
+.nxt_btn.disabled{
+  background: #E4E4EB;
+  color: #8F90A6;
+}

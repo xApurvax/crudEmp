@@ -26,20 +26,20 @@ const SingleDetail = ({carByVin}) => {
                 </div>
                 <div className='flex flex-col gap-[8px] '>
                     <div className='font-[700] text-[32px] leading-[44px] text-[#28293D] '>
-                        <p>{carByVin.year} {carByVin.make} {carByVin.model}</p>
+                        <p>{carByVin?.year} {carByVin?.make} {carByVin?.model}</p>
                     </div>
                     <div className=" font-[400] text-[12px] text-[#8F90A6] leading-[16px]">
-                        <p>{carByVin.dealership} • {carByVin.milage} Mileage • {carByVin.exterior_color}</p>
+                        <p>{carByVin?.dealership} • {carByVin?.milage} Mileage • {carByVin?.exterior_color}</p>
                     </div>
                     <div className=" font-[400] text-[12px] text-[#8F90A6] leading-[16px]">
-                        <p>{carByVin.city}, {carByVin.state}</p>
+                        <p>{carByVin?.city}, {carByVin?.state}</p>
                     </div>
                 </div>
             </div>
             <div className='flex gap-[40px]'>
                 <div className='flex'>
                     <div className="font-[600] text-[28px] text-[#28293D] leading-[38px]">
-                        <p>${carByVin.price.toLocaleString('en-US')}</p>
+                        <p>${carByVin?.price.toLocaleString('en-US')}</p>
                     </div>
                     <div className="flex items-start italic font-[400] text-[12px]  text-[#FFFFFF] leading-[16px] px-[8px] py-[12px] ">
                         <p className="bg-[#8F90A6] px-[6.5px] rounded-full">i</p>
@@ -53,6 +53,7 @@ const SingleDetail = ({carByVin}) => {
                 </div>
             </div>    
         </div>
+        {carByVin?.car_offers &&
         <div className='bg-[#FFF8E6] px-[112px] py-[24px] flex flex-col gap-[16px] '>
             <div className="flex gap-[4px] items-center">
                 <IoMdStar className="flex items-center rounded-full border-solid border-[1px] border-[#05A660] "  fill='#05A660' size={14} />
@@ -60,13 +61,14 @@ const SingleDetail = ({carByVin}) => {
             </div>
             <div className="flex gap-[16px]  "> 
                 <div>
-                    <p className='font-[400] text-[14px] leading-[24px] text-[#28293D]'>•  {carByVin.car_offers.split(",")[0].replace(/[\[\]'"]/g, '')}</p>
+                    <p className='font-[400] text-[14px] leading-[24px] text-[#28293D]'>•  {carByVin?.car_offers.split(",")[0].replace(/[\[\]'"]/g, '')}</p>
                 </div>  
                 <div>
-                    <p className='font-[400] text-[14px] leading-[24px] text-[#28293D]'>•  {carByVin.car_offers.split(",")[1].replace(/[\[\]'"]/g, '')}</p>
+                    <p className='font-[400] text-[14px] leading-[24px] text-[#28293D]'>•  {carByVin?.car_offers.split(",")[1].replace(/[\[\]'"]/g, '')}</p>
                 </div>
             </div>
         </div>
+            }
         <div className=''>
             <GallarySlider carByVin={carByVin} />
         </div>
@@ -82,7 +84,7 @@ const SingleDetail = ({carByVin}) => {
                         </div>
                         <div>
                             <p className='font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase'>Car type</p>
-                            <p className='font-[500] text-[14px] leading-[20px] text-[#28293D]'>{carByVin.car_type}</p>
+                            <p className='font-[500] text-[14px] leading-[20px] text-[#28293D]'>{carByVin?.car_type}</p>
                         </div>
                     </div>
                     <div className='flex gap-[16px] max-w-[360px] items-start'>
@@ -177,7 +179,7 @@ const SingleDetail = ({carByVin}) => {
                 <div className='flex gap-8 max-w-[1320px] h-auto flex-wrap '>
                 {carByVin.features1.split(",").map((data) => {
                 return(
-                    <div className='flex gap-[16px] min-w-[360px] items-start'>
+                    <div key={data.vin} className='flex gap-[16px] min-w-[360px] items-start'>
                         <div className="max-w-[360px]">
                             <p className='line-clamp-2 font-[500] text-[14px] leading-[20px] text-[#28293D]'>{data.replace(/[\[\]'"*]+/g, "")}</p>
                         </div>
