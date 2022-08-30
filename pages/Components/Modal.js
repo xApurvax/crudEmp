@@ -1,15 +1,18 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { FiSend } from 'react-icons/fi';
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false)
 
-  function closeModal() {
+  function closeModal(event) {
     setIsOpen(false)
+    event.stopPropagation();
   }
 
-  function openModal() {
+  function openModal(event) {
     setIsOpen(true)
+    event.stopPropagation();
   }
 
   return (
@@ -18,9 +21,12 @@ export default function MyModal() {
         <button
           type="button"
           onClick={openModal}
-          className="font-[500] text-[14px] leading-[24px] btn-text-cardShadow"
+          className="font-[500] text-[14px] leading-[24px] btn-text-cardShadow flex items-center px-[16px] py-[6px] rounded-[10px] shadow-[0px_8px_16px_-6px_rgba(254,110,6,0.46)]  bg-gradient-to-r from-[#FF8800] to-[#E63535]  text-[#FFFFFF] "
         >
-          Invite dealer
+          <div className="flex items-center gap-[2px]  ">
+            Invite dealer
+            <FiSend size={12} className="btn-text-cardShadow" />
+          </div>
         </button>
       </div>
 

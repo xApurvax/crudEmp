@@ -38,11 +38,12 @@ const ModelShowMore = ({carModel,allState,setAllState}) => {
                 })
                 }
                   </div>
-
+                {Object.entries(carModel).length > 0 ?
                   <div className={` ${dropDown ? " block ": "block " }  flex items-center gap-[5px] `} onClick={() => setDropDown(!dropDown)}>
                     <p className='font-[500] text-[14px] leading-[20px] text-[#FF8800]'>{dropDown ? "Show less" : "Show more"}</p>
                     <IoIosArrowDown fill='#FF8800' size={14} className= {` ${dropDown ?  "rotate-180 fill-[#ff5000] ": "rotate-0 " } transition-all ease-in-out duration-100`}  />
                   </div>
+                : <p className='animate-bounce font-[200] text-[12px] leading-1.5 text-[rgb(143,144,166)]'>Try searching for different cars or changing filters</p>}
             </div>
     </div>
   )

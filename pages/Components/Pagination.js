@@ -19,6 +19,7 @@ const Pagination = () => {
 
   return (
     <div>
+    {Math.ceil(count/20) <= 1 ? null :
       <ReactPaginate
         breakLabel="..."
         nextLabel={<IoIosArrowForward size={18} />}
@@ -38,7 +39,7 @@ const Pagination = () => {
         breakClassName={"flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"}
         activeLinkClassName	={"text-blue"}
         activeClassName={"border-[#FF8800] border-[2px] bg-[#FFFFFF] text-[#FF8800]"}
-      />
+      />}
     </div>
   )
 }

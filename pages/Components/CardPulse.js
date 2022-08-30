@@ -29,7 +29,7 @@ const CardPulse = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center px-[16px] py-[6px] rounded-[10px] shadow-[0px_8px_16px_-6px_rgba(254,110,6,0.46)]   bg-slate-500 min-h-[38px] min-w-[137px] ">
+                        <div className="flex items-center px-[16px] py-[6px] rounded-[10px] bg-slate-500 min-h-[38px] min-w-[137px] ">
                             <div className="flex items-center gap-[2px]  ">
                                 <p className="font-[500] text-[14px] leading-[24px] "></p>
                             </div>

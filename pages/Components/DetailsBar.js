@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { FiSend } from 'react-icons/fi';
 import { IoMdStar } from 'react-icons/io';
 import Router from "next/router";
 import defaultCar from "../Images/defaultCar.svg"
@@ -51,11 +50,8 @@ const DetailsBar = ({car}) => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center px-[16px] py-[6px] rounded-[10px] shadow-[0px_8px_16px_-6px_rgba(254,110,6,0.46)]  bg-gradient-to-r from-[#FF8800] to-[#E63535]  text-[#FFFFFF] ">
-                                    <div className="flex items-center gap-[2px]  ">
-                                        <Modal />
-                                        <FiSend size={12} className="btn-text-cardShadow" />
-                                    </div>
+                                <div className="">
+                                        <Modal />  
                                 </div>
                             </div>
                         </div>
