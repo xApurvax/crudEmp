@@ -8,7 +8,7 @@ export default function MultipleSelectDropDown ({carMake}) {
   const [isOpen, setIsOpen] = useState(false);
   const [dropDown, setDropDown] = useState(false);
 
-  const make = Object.keys(carMake)
+  const make =carMake &&  Object.keys(carMake)
 
   const ref = useRef();
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ export default function MultipleSelectDropDown ({carMake}) {
                     static
                     className="absolute top-[-60px] mt-1 max-h-60 w-full overflow-auto rounded-md bg-white  text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                   >
-                    {make.map((person) => {
+                    {make && make?.map((person) => {
                       const selected = isSelected(person);
                       return (
                         <Listbox.Option key={person} value={person}>

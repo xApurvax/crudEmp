@@ -5,9 +5,9 @@ import ReactPaginate from 'react-paginate';
 import { IoIosArrowForward,IoIosArrowBack } from 'react-icons/io';
 import { fetchPage,pageValue } from '../Redux-store/homePageSlice';
 
-const Pagination = () => {
+const Pagination = ({count}) => {
 
-  const {count} = useSelector((state) => state.homePageSlice);
+  const {} = useSelector((state) => state.homePageSlice);
 
 
   const dispatch = useDispatch()

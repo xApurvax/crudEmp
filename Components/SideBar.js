@@ -11,10 +11,24 @@ import SingleRangeSlider from './SingleRangeSlider';
 import { useSelector , useDispatch } from 'react-redux'
 import {getCarByType,fetchPage,setCarByModel,setCarByBody,setCarByPrice,setCarByYear,setCarByExtColor,setCarByIntColor,setCarByBodyStyle,setCarByTransmission,setCarByDriveTrain,setCarByFuelType,setCarByFeatures} from "../Redux-store/homePageSlice"
 
-const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans,carDrive,carFuel,carFeature}) => {
+const SideBar = ({carData}) => {
 
   const dispatch = useDispatch();
-  const {carByType,carByModel,carByBody,carByRadius,priceRange,yearRange,carByExtColor,carByIntColor,carByBodyStyle,carByTransmission,carByDriveTrain,carByFuelType,carByFeatures} = useSelector((state) => state.homePageSlice)
+  const {carByType,carByModel,carByBody,carByRadius,priceRange,yearRange,carByExtColor,carByIntColor,carByBodyStyle,carByTransmission,carByDriveTrain,carByFuelType,carByFeatures} = useSelector((state) => ({
+    carByType : state.homePageSlice.carByType,
+    carByModel : state.homePageSlice.carByModel,
+    carByBody : state.homePageSlice.carByBody,
+    carByRadius : state.homePageSlice.carByRadius,
+    priceRange : state.homePageSlice.priceRange,
+    yearRange : state.homePageSlice.yearRange,
+    carByExtColor : state.homePageSlice.carByExtColor,
+    carByIntColor : state.homePageSlice.carByIntColor,
+    carByBodyStyle : state.homePageSlice.carByBodyStyle,
+    carByTransmission : state.homePageSlice.carByTransmission,
+    carByDriveTrain : state.homePageSlice.carByDriveTrain,
+    carByFuelType : state.homePageSlice.carByFuelType,
+    carByFeatures : state.homePageSlice.carByFeatures,
+  }))
 
   function getCarType(e){
     //   if (e.target.checked) {
@@ -87,20 +101,20 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
               </div>
               <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]  "></div>
               <div className='mt-[10px] p-[16px]'>
-                <MultipleSelectDropDown carMake={carMake} />
+                <MultipleSelectDropDown carMake={carData.make} />
               </div>
               <div className="flex flex-col gap-[20px] p-[16px] ">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">model</p>
                 </div>
-                <ModelShowMore carModel={carModel} allState={carByModel} setAllState={setCarByModel} />
+                <ModelShowMore carModel={carData.model} allState={carByModel} setAllState={setCarByModel} />
               </div>
               <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></div>
               <div className="flex flex-col gap-[20px] p-[16px]">
                 <div className="flex flex-col gap-[8px]">
                   <p className=" font-[600] text-[12px] leading-[16px] text-[#8F90A6] uppercase">Body type</p>
                 </div>
-                <ModelShowMore carModel={carType} allState={carByBody} setAllState={setCarByBody} />
+                <ModelShowMore carModel={carData.bodyType} allState={carByBody} setAllState={setCarByBody} />
               </div>
               <div className="rounded-[10px] border-[1px] border-solid bg-[#E4E4EB] mx-[16px]"></div>
               <div className="flex flex-col gap-[20px] p-[16px]">
@@ -132,13 +146,13 @@ const SideBar = ({carMake,carModel,carType,carStyle,carEcolur,carIcolur,carTrans
               </div>
               <div className=' flex flex-col py-[10px] '>
                 <div className=' '>
-                    <DetailsDropDown dropDownTitle="Style" title1="BODY STYLE" state1={carByBodyStyle} setState1={setCarByBodyStyle} data1={carStyle} title2="EXTERIOR COLOR" state2={carByExtColor} setState2={setCarByExtColor} data2={carEcolur} title3="INTERIOR COLOR" state3={carByIntColor} setState3={setCarByIntColor} data3={carIcolur} />
+                    <DetailsDropDown dropDownTitle="Style" title1="BODY STYLE" state1={carByBodyStyle} setState1={setCarByBodyStyle} data1={carData.bodyType} title2="EXTERIOR COLOR" state2={carByExtColor} setState2={setCarByExtColor} data2={carData.exteriorColor} title3="INTERIOR COLOR" state3={carByIntColor} setState3={setCarByIntColor} data3={carData.interiorColor} />
                 </div>                                               
                 <div className=' '>
-                    <DetailsDropDown dropDownTitle="Performance" title1="TRANSMISSION" state1={carByTransmission} setState1={setCarByTransmission} data1={carTrans} title2="DRIVE TRAIN" state2={carByDriveTrain} setState2={setCarByDriveTrain} data2={carDrive} title3="FUEL TYPE" state3={carByFuelType} setState3={setCarByFuelType} data3={carFuel} />
+                    <DetailsDropDown dropDownTitle="Performance" title1="TRANSMISSION" state1={carByTransmission} setState1={setCarByTransmission} data1={carData.transmission} title2="DRIVE TRAIN" state2={carByDriveTrain} setState2={setCarByDriveTrain} data2={carData.driveTrain} title3="FUEL TYPE" state3={carByFuelType} setState3={setCarByFuelType} data3={carData.fuelType} />
                 </div>
                 <div className=' '>
-                    <DetailsDropDown dropDownTitle="Features"  title1={Object.entries(carFeature)[0] && Object.entries(carFeature)[0][0]} state1={carByFeatures} setState1={setCarByFeatures} data1={Object.entries(carFeature)[0] && Object.entries(carFeature)[0][1]} title2={Object.entries(carFeature)[1] && Object.entries(carFeature)[1][0]} state2={carByFeatures} setState2={setCarByFeatures}  data2={Object.entries(carFeature)[1] && Object.entries(carFeature)[1][1]} title3={Object.entries(carFeature)[2] && Object.entries(carFeature)[2][0]} state3={carByFeatures} setState3={setCarByFeatures} data3={Object.entries(carFeature)[2] && Object.entries(carFeature)[2][1]} title4={Object.entries(carFeature)[3] && Object.entries(carFeature)[3][0]} state4={carByFeatures} setState4={setCarByFeatures} data4={Object.entries(carFeature)[3] && Object.entries(carFeature)[3][1]} title5={Object.entries(carFeature)[4] && Object.entries(carFeature)[4][0]} state5={carByFeatures} setState5={setCarByFeatures}  data5={Object.entries(carFeature)[4] && Object.entries(carFeature)[4][1]}  />
+                    <DetailsDropDown dropDownTitle="Features"  title1={Object.entries(carData.features)[0] && Object.entries(carData.features)[0][0]} state1={carByFeatures} setState1={setCarByFeatures} data1={Object.entries(carData.features)[0] && Object.entries(carData.features)[0][1]} title2={Object.entries(carData.features)[1] && Object.entries(carData.features)[1][0]} state2={carByFeatures} setState2={setCarByFeatures}  data2={Object.entries(carData.features)[1] && Object.entries(carData.features)[1][1]} title3={Object.entries(carData.features)[2] && Object.entries(carData.features)[2][0]} state3={carByFeatures} setState3={setCarByFeatures} data3={Object.entries(carData.features)[2] && Object.entries(carData.features)[2][1]} title4={Object.entries(carData.features)[3] && Object.entries(carData.features)[3][0]} state4={carByFeatures} setState4={setCarByFeatures} data4={Object.entries(carData.features)[3] && Object.entries(carData.features)[3][1]} title5={Object.entries(carData.features)[4] && Object.entries(carData.features)[4][0]} state5={carByFeatures} setState5={setCarByFeatures}  data5={Object.entries(carData.features)[4] && Object.entries(carData.features)[4][1]}  />
                 </div>
                 <div className=' '>
                     <DetailsDropDown dropDownTitle="Ratings" />

@@ -5,14 +5,13 @@ import { FiSend } from 'react-icons/fi';
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false)
 
-  function closeModal(event) {
+  function closeModal() {
     setIsOpen(false)
-    event.stopPropagation();
   }
 
-  function openModal(event) {
+  function openModal() {
     setIsOpen(true)
-    event.stopPropagation();
+   
   }
 
   return (

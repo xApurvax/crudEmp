@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import autodigg from "../Images/autodiggftr.svg"
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import {FacebookShareButton,InstapaperShareButton, TwitterShareButton} from "react-share";
 
 const Footer = () => {
   return (
@@ -20,9 +21,21 @@ const Footer = () => {
                 </section>
                 <section className="flex flex-col justify-between">
                     <section className="flex gap-[36px] justify-end">
-                        <div><FaFacebook size={24} fill="#FFFFFF" /></div>
-                        <div><FaTwitter size={24} fill="#FFFFFF" /></div>
-                        <div><FaInstagram size={24} fill="#FFFFFF" /></div>
+                        <div>
+                            <FacebookShareButton quote='autodigg- Used & New Cars' hashtag='#autodigg' url="https://next-redux-cars.vercel.app/" >
+                                <FaFacebook size={24} fill="#FFFFFF" />
+                            </FacebookShareButton>
+                        </div>
+                        <div>
+                            <TwitterShareButton url="https://next-redux-cars.vercel.app/" >
+                                <FaTwitter size={24} fill="#FFFFFF" />
+                            </TwitterShareButton>
+                        </div>
+                        <div>
+                            <InstapaperShareButton url="https://next-redux-cars.vercel.app/" >
+                                <FaInstagram size={24} fill="#FFFFFF" />
+                            </InstapaperShareButton>
+                        </div>
                     </section>
                     <section className="flex gap-[32px] justify-start">
                         <div><Link href="/"><a className="font-[500] text-[14px] leading-[24px] text-[#FFFFFF]">How It Works</a></Link></div>

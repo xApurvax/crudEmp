@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { IoMdStar } from 'react-icons/io';
 import Router from "next/router";
-import defaultCar from "../Images/defaultCar.svg"
+import defaultCar from "../Images/defaultcar.svg"
 import { useSelector , useDispatch } from 'react-redux'
 import CardPulse from "./CardPulse";
 import Modal from "./Modal";
@@ -50,7 +50,7 @@ const DetailsBar = ({car}) => {
                                     </div>
                                 </div>
 
-                                <div className="">
+                                <div className="" onClick={(event)=>  event.stopPropagation()}>
                                         <Modal />  
                                 </div>
                             </div>

@@ -3,16 +3,49 @@ import { useSelector , useDispatch } from 'react-redux'
 import DetailsBar from "./DetailsBar"
 import Pagination from "./Pagination"
 import SideBar from "./SideBar" 
-import HomePageSlice from "../Redux-store/homePageSlice"
 import CardPulse from './CardPulse'
 import Nocars from './Nocars'
+// import { useSelector } from 'react-redux'
 
-const LandingDetails = () => {
+const LandingDetails = ({props}) => {
 
-    const dispatch = useDispatch(); 
+ const { make ,model ,bodyType,exteriorColor,interiorColor,driveTrain,allCar,count,transmission,fuelType,features } = useSelector((state) => state.homePageSlice)
+ const [carData,setCarData] = useState({
+    allCar : props.allCar,
+    count : props.count,
+    bodyType : props.bodyType,
+    exteriorColor : props.exteriorColor,
+    interiorColor : props.interiorColor,
+    transmission : props.transmission,
+    driveTrain : props.driveTrain,
+    fuelType : props.fuelType,
+    features : props.features,
+    make : props.make,
+    model : props.model,
+ })
+
+ useEffect(() => {
+    if(allCar.length>0){
+        setCarData({
+            allCar : allCar,
+            count : count,
+            bodyType : bodyType,
+            exteriorColor : exteriorColor,
+            interiorColor : interiorColor,
+            transmission : transmission,
+            driveTrain : driveTrain,
+            fuelType : fuelType,
+            features : features,
+            make : make,
+            model : model,
+        })
+    }
+   }, [allCar,count])
+    // const dispatch = useDispatch(); 
     // const {status ,counts} = useSelector((state) => state.carsDataSlice); 
-    const { allCar , count , make ,model ,bodyType,exteriorColor,interiorColor,driveTrain,transmission,fuelType,features } = useSelector((state) => state.homePageSlice)
+    // const { make ,model ,bodyType,exteriorColor,interiorColor,driveTrain,transmission,fuelType,features } = useSelector((state) => state.homePageSlice)
 
+        console.log(carData,"object data")
   return (
     <div>
         <div className="bg-[#FAFAFC] px-[60px] py-[36px]">
@@ -21,16 +54,16 @@ const LandingDetails = () => {
                     <p className="font-[600] text-[12px] leading-[16px] uppercase text-[#8F90A6]">used car for sale</p>
                 </div>
                 <div className="flex ">
-                    <p className="font-[700] text-[32px] leading-[44px] text-[#28293D]">Showing {count} cars</p>
+                    <p className="font-[700] text-[32px] leading-[44px] text-[#28293D]">Showing {carData.count} cars</p>
                 </div>
             </div>
             <div className="flex mt-[36px] gap-[24px] ">
                 <div className="w-[30%]">
-                    <SideBar carMake={make} carModel={model} carType={bodyType} carStyle={bodyType} carEcolur={exteriorColor} carIcolur={interiorColor} carTrans={transmission} carDrive={driveTrain} carFuel={fuelType} carFeature={features} />
+                    <SideBar carData={carData} />
                 </div>
                 <div className='flex flex-col'>
                     <div className="w-[100%] flex flex-col gap-[24px] min-h-[1550px] ">
-                    {allCar.length > 0 ? allCar.map((cars) => {
+                    {carData.allCar.length > 0 ? carData.allCar.map((cars) => {
                         return (
                                 <>
                                     <DetailsBar  car={cars} />
@@ -40,7 +73,7 @@ const LandingDetails = () => {
                     <Nocars />}
                     </div>
                     <div className="px-[50px] border-b-[1px] border-solid border-[#E4E4EB] ">
-                        <Pagination />
+                        <Pagination count={carData.count} />
                     </div>
                     <div className=" py-[36px] ">
                         <div>

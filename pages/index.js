@@ -1,28 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styles from '../styles/Home.module.css'
-import LandingDetails from './Components/LandingDetails'
-import {wrapper} from "./Redux-store/store"
-import {getAllCar,getCarCount,getMake,getModel,getBodyType,getExtColor,getIntColor,getTransmission,getDriveTrain,getFuelType,getFeatures,getCarByType} from "./Redux-store/homePageSlice"
+import LandingDetails from '../Components/LandingDetails'
+import { useSelector } from 'react-redux'
+// import {wrapper} from "./Redux-store/store"
+// import {getAllCar,getCarCount,getMake,getModel,getBodyType,getExtColor,getIntColor,getTransmission,getDriveTrain,getFuelType,getFeatures,getCarByType} from "./Redux-store/homePageSlice"
 
-export default function Home() {
-
+export default function Home(props) {
   // const dispatch = useDispatch(); 
   // const {status } = useSelector((state) => state.carsDataSlice);
 
-  // // console.log(counts,"count")
+  // console.log(allCar,"count")
 
   // useEffect(() => {
   //   status=="IDLE" &&
   //       dispatch(fetchAllCarData());     
   // }, [])
-  
 
+  // const dispatch = useDispatch(); 
+  // const {status ,counts} = useSelector((state) => state.carsDataSlice); 
+  const { make ,model ,bodyType,exteriorColor,interiorColor,driveTrain,allCar,count,transmission,fuelType,features } = useSelector((state) => state.homePageSlice)
+ 
   return (
     <div className={`flex justify-center items-center ${styles.container}`}>
     <div className='w-[1520px]'>
       {/* <Navbar />  */}
-      <LandingDetails  />
+      <LandingDetails props={props}  />
       {/* <Footer /> */}
     </div>
     </div>
@@ -86,8 +89,10 @@ export default function Home() {
 //   } 
 // }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
+// (store) => async () => {
+  export async function getServerSideProps() {
+  // export const getServerSideProps = wrapper.getServerSideProps(
+  // (store) => async () => {
     const base_url = "https://autodigg.com/ad-api/cars/list?usedCar=false&car_type=Used+car,New+car,Certified+pre-owned&page=1&radius=100&newCar=false";
 
     const response = await axios.all([
@@ -104,17 +109,31 @@ export const getServerSideProps = wrapper.getServerSideProps(
       axios.get(`https://autodigg.com/ad-api/cars/list?make=&return=model`)
     ])
 
-    store.dispatch(getAllCar(response[0].data));
-    store.dispatch(getCarCount(response[1].data.count))
-    store.dispatch(getBodyType(response[2].data ? response[2].data : null))
-    store.dispatch(getExtColor(response[3].data))
-    store.dispatch(getIntColor(response[4].data))
-    store.dispatch(getTransmission(response[5].data))
-    store.dispatch(getDriveTrain(response[6].data))
-    store.dispatch(getFuelType(response[7].data))
-    store.dispatch(getFeatures(response[8].data))
-    store.dispatch(getMake(response[9].data))
-    store.dispatch(getModel(response[10].data))
+    // store.dispatch(getAllCar(response[0].data));
+    // store.dispatch(getCarCount(response[1].data.count))
+    // store.dispatch(getBodyType(response[2].data ? response[2].data : null))
+    // store.dispatch(getExtColor(response[3].data))
+    // store.dispatch(getIntColor(response[4].data))
+    // store.dispatch(getTransmission(response[5].data))
+    // store.dispatch(getDriveTrain(response[6].data))
+    // store.dispatch(getFuelType(response[7].data))
+    // store.dispatch(getFeatures(response[8].data))
+    // store.dispatch(getMake(response[9].data))
+    // store.dispatch(getModel(response[10].data))
 
+    return {
+      props: {
+        allCar : response[0].data,
+        count : response[1].data.count,
+        bodyType : response[2].data,
+        exteriorColor : response[3].data,
+        interiorColor : response[4].data,
+        transmission : response[5].data,
+        driveTrain : response[6].data,
+        fuelType : response[7].data,
+        features : response[8].data,
+        make : response[9].data,
+        model : response[10].data,
+      }, 
+    }
   }
-)
